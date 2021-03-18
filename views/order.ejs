@@ -1,0 +1,43 @@
+<%# Include the header module (partial) %> 
+<%- include('./partials/head.ejs') %> 
+
+    <h2>NERD shirt bestellen</h2>
+    <p>Je custom NERD shirts kun je afhalen bij de copyshop van het Theo Thijssenhuis. Na je bestelling ontvang je een afhaalbevestiging. Betalen doe je bij het afhalen.</p>
+    <% if(shirts.length > 0) { %> 
+        <h3>In je winkelwagen (<%= shirts.length %>):</h3>
+        <p>Dit zijn alle NERD shirts die je hebt opgeslagen.</p>
+        <% shirts.forEach(element => { %>
+            <div>
+                <p>[plaatje van shirt?]</p>
+                <p><%= element.pasvorm %> </p>
+                <p>Kleur: <%= element.kleur %></p>
+                <p>Maat: <%= element.maat %></p>
+                <% if(element.tekst && element.tekst.length > 0) { %> 
+                    <p>Tekst: <%= element.tekst %> </p>
+                <% } %> 
+                <p>Prijs: € 24,99</p>
+            </div>
+        <% }); %> 
+        <p>Totaalbedrag: € <%= shirts.length * 24.99 %> </p>
+    <% } %> 
+    <h3>Jouw gegevens</h3>
+    <p>Om je bestelling te kunnen plaatsen, hebben we wat informatie van je nodig.</p>
+    <form action="/confirmorder" method="POST">
+        <input type="hidden" id="userid" name="userid" value="<%= userid %>">
+        <fieldset>
+            <legend>Je naam:</legend>
+            <label for="voornaam">Voornaam:</label><br>
+            <input type="text" id="voornaam" name="voornaam" required><br><br>
+            <label for="achternaam">Achternaam:</label><br>
+            <input type="text" id="achternaam" name="achternaam" required>
+        </fieldset>        
+        <fieldset>
+            <legend>Je e-mail:</legend>
+            <label for="email">E-mailadres:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <p>Wanneer je een NERD shirt besteld ontvang je op dit e-mailadres een afhaalbevestiging.</p>
+            <input type="submit" value="Bestelling plaatsen">
+        </fieldset>
+    </form>
+<%# Include the footer module (partial) %> 
+<%- include('./partials/footer.ejs') %> 

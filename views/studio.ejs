@@ -1,0 +1,51 @@
+<%# Include the header module (partial) %> 
+<%- include('./partials/head.ejs') %> 
+
+    <main>
+        <div>
+            <p>[afbeelding van shirt]</p>
+            <form action="/createshirt" method="POST">
+                <input type="hidden" id="userid" name="userid" value="<%= userid %>">
+                <input type="hidden" id="shirtid" name="shirtid" value="<%= shirtid %>">
+                <fieldset>
+                    <legend>Voor wie is het shirt?</legend>
+                    <input type="radio" id="man" name="pasvorm" value="man" required>
+                    <label for="man">Man</label><br>
+                    <input type="radio" id="vrouw" name="pasvorm" value="vrouw" required>
+                    <label for="vrouw">Vrouw</label>
+                </fieldset> 
+                <fieldset>
+                    <legend>In welke maat wil je het shirt?</legend>
+                    <input type="radio" id="small" name="maat" value="small" required>
+                    <label for="small">Small</label><br>
+                    <input type="radio" id="medium" name="maat" value="medium" required>
+                    <label for="medium">Medium</label><br>
+                    <input type="radio" id="large" name="maat" value="large" required>
+                    <label for="large">Large</label><br>
+                    <input type="radio" id="extra-large" name="maat" value="extra-large" required>
+                    <label for="extra-large">Extra large</label>
+                </fieldset>
+                <fieldset>
+                    <legend>Welke kleur krijgt jouw NERD shirt?</legend>
+                    <input type="radio" id="rood" name="kleur" value="rood" required>
+                    <label for="rood">Rood</label><br>
+                    <input type="radio" id="groen" name="kleur" value="groen" required>
+                    <label for="groen">Groen</label><br>
+                    <input type="radio" id="blauw" name="kleur" value="blauw" required>
+                    <label for="blauw">Blauw</label><br>
+                    <input type="radio" id="oranje" name="kleur" value="oranje" required>
+                    <label for="oranje">Oranje</label><br>
+                    <input type="radio" id="roze" name="kleur" value="roze" required>
+                    <label for="roze">Roze</label><br>
+                </fieldset> 
+                <fieldset>
+                    <legend>Maak je NERD shirt extra persoonlijk</legend>
+                    <label for="shirttekst">Type een tekst voor op je shirt - optioneel</label><br>
+                    <input type="text" id="shirttekst" name="shirttekst"><br><br>
+                    <input type="submit" name="opslaan" id="opslaan" value="Shirt opslaan">
+                </fieldset>           
+        </div>
+    </main>
+
+<%# Include the footer module (partial) %> 
+<%- include('./partials/footer.ejs') %> 

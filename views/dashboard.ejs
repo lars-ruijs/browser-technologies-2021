@@ -10,9 +10,11 @@
             <% userData.savedShirts.forEach(element => { %>
                 <div>
                     <p>[plaatje van shirt?]</p>
-                    <p>Status: <span class="<%= element.status %> "><%= element.status %></span></p>
-                    <a href="#">Aanpassen</a>
-                    <a href="#">Bestellen</a>
+                    <p><%= element.pasvorm %></p>
+                    <p>Maat: <%= element.maat %></p>
+                    <p>Kleur: <%= element.kleur %></p>
+                    <a href="<%= `/studio/${userData.userid}/${element.shirtid}` %> ">Aanpassen</a>
+                    <a href="<%= `/order/${userData.userid}` %>">Bestellen</a>
                 </div>
             <% }); %> 
         <% } %> 

@@ -1,0 +1,11 @@
+<%# Include the header module (partial) %> 
+<%- include('./partials/head.ejs') %> 
+
+    <h2>Je shirt is succesvol opgeslagen!</h2>
+    <p>Je kunt je opgeslagen NERD shirt terugvinden via onderstaande account code. Bewaar de code goed!</p>
+    <p><%= userid %> </p>
+    <a href="<%= `/studio/${userid}/${shirtid}` %> ">Nog een shirt maken?</a>
+    <a href="<%= `/order/${userid}` %>">Direct bestellen</a>
+
+<%# Include the footer module (partial) %> 
+<%- include('./partials/footer.ejs') %> 
