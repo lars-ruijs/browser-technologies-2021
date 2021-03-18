@@ -1,0 +1,42 @@
+<%# Include the header module (partial) %> 
+<%- include('./partials/head.ejs') %> 
+    <a href="/">Uitloggen</a>
+    <h2>Welkom <%= userData.voornaam %>!</h2>
+    <p>Op deze pagina vind je een overzicht van je gemaakte NERD shirts. Als een shirt nog niet is besteld, kun je het shirt nog aanpassen.</p>
+
+    <div class="userproducts">
+        <% if(userData.savedShirts.length > 0) { %> 
+            <h3>Opgeslagen NERD shirts:</h3>
+            <% userData.savedShirts.forEach(element => { %>
+                <div>
+                    <p>[plaatje van shirt?]</p>
+                    <p>Status: <span class="<%= element.status %> "><%= element.status %></span></p>
+                    <a href="#">Aanpassen</a>
+                    <a href="#">Bestellen</a>
+                </div>
+            <% }); %> 
+        <% } %> 
+        <% if(userData.orderedShirts.length > 0) { %> 
+            <h3>Bestelde NERD shirts:</h3>
+            <% userData.orderedShirts.forEach(element => { %>
+                <div>
+                    <p>plaatje van shirt?</p>
+                    <p>Status: <span class="<%= element.status %> "><%= element.status %></span></p>
+                    <p>Je kunt dit shirt niet meer aanpassen</p>
+                </div>
+            <% }); %> 
+        <% } %> 
+        <% if(userData.orderedShirts.length === 0 && userData.savedShirts.length === 0) { %>
+            <h3>Je hebt nog geen shirts opgeslagen of besteld. Tijd om er een te maken?</h3>
+        <% } else { %>  
+            <h3>Tijd voor een nieuw shirt?</h3>
+        <% } %> 
+        <div>
+            <p>[afbeelding van + symbool]</p>
+            <p>Bestel dan nu een custom NERD shirt!</p>
+            <a href=<%= `/studio/${userData.userid}/${shirtid}` %> >Nieuw shirt maken</a>
+        </div>
+    </div>
+
+<%# Include the footer module (partial) %> 
+<%- include('./partials/footer.ejs') %> 

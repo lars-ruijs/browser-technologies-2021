@@ -1,0 +1,24 @@
+<%# Include the header module (partial) %> 
+<%- include('./partials/head.ejs') %> 
+
+    <h2>Laten we een account maken!</h2>
+    <p>Om een shirt te kunnen opslaan en een bestelling te plaatsen, hebben we wat informatie van je nodig.</p>
+    <form action="/createuser" method="POST">
+        <input type="hidden" id="clientid" name="clientid" value="<%= userid %>">
+        <fieldset>
+            <legend>Je naam:</legend>
+            <label for="voornaam">Voornaam:</label><br>
+            <input type="text" id="voornaam" name="voornaam" required><br><br>
+            <label for="achternaam">Achternaam:</label><br>
+            <input type="text" id="achternaam" name="achternaam" required>
+        </fieldset>        
+        <fieldset>
+            <legend>Je e-mail:</legend>
+            <label for="email">E-mailadres:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <p>Wanneer je een NERD shirt besteld ontvang je op dit e-mailadres een afhaalbevestiging.</p>
+            <input type="submit" value="Doorgaan">
+        </fieldset>
+    </form>
+<%# Include the footer module (partial) %> 
+<%- include('./partials/footer.ejs') %> 

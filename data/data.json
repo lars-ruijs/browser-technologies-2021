@@ -1,0 +1,24 @@
+[
+  {
+    "userid": "kmepz7ui",
+    "voornaam": "Lars",
+    "achternaam": "Ruijs",
+    "email": "lars@mail.com",
+    "orderedShirts": [
+      {
+        "shirtid": "f",
+        "status": "besteld",
+        "size": "medium"
+      }
+    ],
+    "savedShirts": []
+  },
+  {
+    "userid": "kmesdgmr",
+    "voornaam": "Hendrik",
+    "achternaam": "de Tester",
+    "email": "test@mail.com",
+    "orderedShirts": [],
+    "savedShirts": []
+  }
+]

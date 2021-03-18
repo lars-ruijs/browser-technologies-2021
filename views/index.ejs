@@ -1,13 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello world</h1>
-    <p><%= title %> </p>
-</body>
-</html>
+<%# Include the header module (partial) %> 
+<%- include('./partials/head.ejs') %> 
+
+    <div>
+        <h2>Maak je eigen NERD shirt!</h2>
+        <p>Ben jij een echte nerd geworden na de Minor Web Development? Dan is het nu je kans om dat te laten zien aan de rest van de wereld met je eigen NERD shirt.</p>
+        <p>Een NERD shirt is nu beschikbaar voor slechts €24,99 inclusief btw. Je haalt je bestelling kosteloos af bij het Theo Thijssenhuis.</p>
+        <a href="/newuser">Start ontwerpen</a>
+    </div>
+
+    <div>
+        <h2>Bekijk je NERD shirts</h2>
+        <p>Heb je al een NERD shirt ontworpen? Dan kun je super eenvoudig je gemaakte shirt bekijken en aanpassen als je het shirt nog niet had besteld.</p>
+        <form action="/dashboard" method="POST">
+            <label for="logincode">Login met je 8 delige code</label><br>
+            <input type="text" name="logincode" id="logincode" minlength="8" maxlength="8"><br>
+            <input type="submit" value="Inloggen">
+        </form>
+    </div>
+
+<%# Include the footer module (partial) %> 
+<%- include('./partials/footer.ejs') %> 
