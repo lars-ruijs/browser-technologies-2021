@@ -1,0 +1,13 @@
+<%# Include the header module (partial) %> 
+<%- include('./partials/head.ejs') %> 
+
+    <h2>Je bestelling is gelukt!</h2>
+    <p>Bedankt! Je kunt je bestelling ophalen bij de copyshop van het Theo Thijssenhuis. Je betaald ter plekke met PIN of contant.</p>
+    <p>We wensen je veel plezier met je NERD shirt!</p>
+        <form action="/dashboard" method="POST">
+            <input type="hidden" value="<%= userid %>" name="logincode" id="logincode">
+            <input type="submit" value="Terug naar dashboard">
+        </form>
+
+<%# Include the footer module (partial) %> 
+<%- include('./partials/footer.ejs') %> 
