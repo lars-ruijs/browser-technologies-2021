@@ -8,6 +8,9 @@ export function studioRoute(req, res) {
 
         res.render('studio', { title: "Design je eigen shirt", userid, shirtid });
     }
+    else {
+        res.render("404", { title: "Oeps, studio kan niet worden geladen", errorTitle: "Oeps, de ontwerpstudio kan niet worden geladen", errorDescription: "De ontwerpstudio heeft een ongeldige inlog- of t-shirtcode ontvangen en kan daardoor de ontwerpstudio niet tonen. Klik hieronder om een nieuwe sessie te starten.", errorLink: `/studio/${uniqid.time()}/${uniqid()}}`, errorLinkDescription: "Ontwerpstudio opnieuw starten" });   
+    }
 }
 
 // If shirt was created
@@ -76,6 +79,9 @@ export function shirtCreationRoute(req, res) {
          const whatToWrite = JSON.stringify(data, null, 2);
          fs.writeFile("./data/data.json", whatToWrite, (err) => { if(err){throw err;} console.log("succes");});
          res.render("shirtcreated", { title: "T-shirt opgeslagen!", userid: userId, shirtid: uniqid()});
+    }
+    else {
+        res.render("404", { title: "T-shirt kon niet worden opgeslagen", errorTitle: "Oeps, je NERD shirt kon niet worden opgeslagen", errorDescription: "Niet alle vereiste gegevens zijn ingevuld. Ga terug naar de vorige pagina en zorg ervoor dat alle vereiste velden zijn ingevuld." });   
     }
 }
 

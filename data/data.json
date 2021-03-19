@@ -35,15 +35,7 @@
     "achternaam": "",
     "email": "",
     "orderedShirts": [],
-    "savedShirts": [
-      {
-        "shirtid": "cz17sh1fnfkmf1864z",
-        "pasvorm": "vrouw",
-        "maat": "small",
-        "kleur": "rood",
-        "tekst": "Test vanaf opslaan"
-      }
-    ]
+    "savedShirts": []
   },
   {
     "userid": "kmf1xx3t",
@@ -116,14 +108,22 @@
         "tekst": "test"
       }
     ],
-    "savedShirts": [
+    "savedShirts": []
+  },
+  {
+    "userid": "kmg9hhz3",
+    "voornaam": "Lars",
+    "achternaam": "Ruijs",
+    "email": "lars@mail.com",
+    "orderedShirts": [
       {
-        "shirtid": "cz17sh1go0kmf3zg4y",
-        "pasvorm": "man",
-        "maat": "medium",
+        "shirtid": "cz17sh1ilokmg9hhz4",
+        "pasvorm": "vrouw",
+        "maat": "large",
         "kleur": "blauw",
-        "tekst": ""
+        "tekst": "Test als gast"
       }
-    ]
+    ],
+    "savedShirts": []
   }
 ]

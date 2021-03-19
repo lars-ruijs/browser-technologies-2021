@@ -1,3 +1,4 @@
+import uniqid from 'uniqid';
 import fs, { writeFile } from 'fs';
 
 // Overview of ordered (saved) shirts
@@ -17,11 +18,14 @@ export function orderRoute(req, res) {
         if(ids.length > 0) {
             const index = data.map(user => user.userid).indexOf(userId);
             const shirts = data[index].savedShirts;
-            res.render("order", { title: "Bestel jouw Nerdshirts", userid: userId, shirts});
+            res.render("order", { title: "Bestel jouw Nerdshirts", userid: userId, shirts, newshirtid: uniqid()});
         }
         else {
-            res.render("404", { title: "404"});
+            res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt ingevuld is bij ons niet bekend. Controleer je code en probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
         }
+    }
+    else {
+        res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt ingevuld is bij ons niet bekend. Let op! Je inlogcode moet uit 8 karakters bestaan. Je gebruikt er nu te weinig. Controleer je code en probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
     }
 }
 
@@ -51,10 +55,49 @@ export function confirmRoute(req, res) {
             res.send("Succesvol besteld");
         }
         else {
-            res.render("404", { title: "404"});
+            res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt gebruikt is niet juist, want we kennen het niet. Probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
         }
         // Convert data back to JSON and write the file
         const whatToWrite = JSON.stringify(data, null, 2);
         fs.writeFile("./data/data.json", whatToWrite, (err) => { if(err){throw err;} console.log("succes");});
+    }
+    else {
+        res.render("404", { title: "Je hebt niet alles ingevuld", errorTitle: "Je hebt niet alle vereiste gegevens ingevuld", errorDescription: "Zorg ervoor dat je alle vereiste velden van het formulier invuld, anders kunnen we je bestelling niet plaatsen!", errorLink: `/order/${req.body.userid}`, errorLinkDescription: "Probeer het opnieuw" });   
+    }
+}
+
+export function removeRoute(req, res) {
+    if(req.params.user && req.params.user.length === 8 && req.params.shirt && req.params.shirt.length === 18) {
+        const userId = req.params.user;
+        const shirtId = req.params.shirt;
+
+        // Get the data file
+        const dataFile = fs.readFileSync("./data/data.json");
+        // Parse JSON and convert to an array
+        const data = Array.from(JSON.parse(dataFile));
+        // Create an array with user id's > filter on provided user id
+        const ids = data.map(user => user.userid).filter(id => id == userId);
+        
+        // If user exists
+        if(ids.length > 0) {
+            const index = data.map(user => user.userid).indexOf(userId);
+            data[index].savedShirts.forEach((shirt, shirtIndex) => {
+                if(shirt.shirtid === shirtId) {
+                    data[index].savedShirts.splice(shirtIndex, 1);
+                    if(req.query.page) {
+                        res.render("removed", { title: "Shirt is succesvol verwijderd!", nextStep: req.query.page});
+                    }
+                }
+            });
+        }
+        else {
+            res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt gebruikt is niet juist, want we kennen het niet. Probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });    
+        }
+        // Convert data back to JSON and write the file
+        const whatToWrite = JSON.stringify(data, null, 2);
+        fs.writeFile("./data/data.json", whatToWrite, (err) => { if(err){throw err;} console.log("succes");});
+    }
+    else {
+        res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode en/of shirt is onjuist", errorDescription: "De inlogcode en/of shirt die je wilt verwijderen is niet juist, want we kennen het niet. Probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });    
     }
 }

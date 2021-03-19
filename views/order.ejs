@@ -15,29 +15,34 @@
                 <% if(element.tekst && element.tekst.length > 0) { %> 
                     <p>Tekst: <%= element.tekst %> </p>
                 <% } %> 
+                <a href="<%= `/remove/${userid}/${element.shirtid}?page=/order/${userid}` %> ">Verwijderen</a>
                 <p>Prijs: € 24,99</p>
             </div>
         <% }); %> 
         <p>Totaalbedrag: € <%= shirts.length * 24.99 %> </p>
+        <h3>Jouw gegevens</h3>
+        <p>Om je bestelling te kunnen plaatsen, hebben we wat informatie van je nodig.</p>
+        <form action="/confirmorder" method="POST">
+            <input type="hidden" id="userid" name="userid" value="<%= userid %>">
+            <fieldset>
+                <legend>Je naam:</legend>
+                <label for="voornaam">Voornaam:</label><br>
+                <input type="text" id="voornaam" name="voornaam" required><br><br>
+                <label for="achternaam">Achternaam:</label><br>
+                <input type="text" id="achternaam" name="achternaam" required>
+            </fieldset>        
+            <fieldset>
+                <legend>Je e-mail:</legend>
+                <label for="email">E-mailadres:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <p>Wanneer je een NERD shirt besteld ontvang je op dit e-mailadres een afhaalbevestiging.</p>
+                <input type="submit" value="Bestelling plaatsen">
+            </fieldset>
+        </form>
+    <% } else { %> 
+        <h3>Er zitten nog geen producten in je account opgeslagen</h3>
+        <p>Wordt het tijd om iets te bestellen?</p>
+        <a href="<%= `/studio/${userid}/${newshirtid}` %>">Direct shirt ontwerpen</a>
     <% } %> 
-    <h3>Jouw gegevens</h3>
-    <p>Om je bestelling te kunnen plaatsen, hebben we wat informatie van je nodig.</p>
-    <form action="/confirmorder" method="POST">
-        <input type="hidden" id="userid" name="userid" value="<%= userid %>">
-        <fieldset>
-            <legend>Je naam:</legend>
-            <label for="voornaam">Voornaam:</label><br>
-            <input type="text" id="voornaam" name="voornaam" required><br><br>
-            <label for="achternaam">Achternaam:</label><br>
-            <input type="text" id="achternaam" name="achternaam" required>
-        </fieldset>        
-        <fieldset>
-            <legend>Je e-mail:</legend>
-            <label for="email">E-mailadres:</label><br>
-            <input type="email" id="email" name="email" required><br>
-            <p>Wanneer je een NERD shirt besteld ontvang je op dit e-mailadres een afhaalbevestiging.</p>
-            <input type="submit" value="Bestelling plaatsen">
-        </fieldset>
-    </form>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

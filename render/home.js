@@ -30,12 +30,10 @@ export function dashboardRoute(req, res) {
            const userData = data[index];
            res.render("dashboard", { title: "Dashboard", userData, shirtid: uniqid() });
         }
+        // If id does not exist > render error page
         else {
-            res.status(401).render("404", { title: "404 Not Found" });   
+            res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt ingevuld is bij ons niet bekend. Controleer je code en probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
         }
-    }
-    else {
-        res.status(404).render("404", { title: "404 Not Found" });
     }
 }
 

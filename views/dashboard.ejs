@@ -14,6 +14,7 @@
                     <p>Maat: <%= element.maat %></p>
                     <p>Kleur: <%= element.kleur %></p>
                     <a href="<%= `/studio/${userData.userid}/${element.shirtid}` %> ">Aanpassen</a>
+                    <a href="<%= `/remove/${userData.userid}/${element.shirtid}?page=/dashboard` %> ">Verwijderen</a>
                     <a href="<%= `/order/${userData.userid}` %>">Bestellen</a>
                 </div>
             <% }); %> 
