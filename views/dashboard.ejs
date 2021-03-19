@@ -1,7 +1,7 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
     <a href="/">Uitloggen</a>
-    <h2>Welkom <%= userData.voornaam %>!</h2>
+    <h2>Welkom<%= userData.voornaam ? " "+userData.voornaam : "" %>!</h2>
     <p>Op deze pagina vind je een overzicht van je gemaakte NERD shirts. Als een shirt nog niet is besteld, kun je het shirt nog aanpassen.</p>
 
     <div class="userproducts">
@@ -10,9 +10,12 @@
             <% userData.savedShirts.forEach(element => { %>
                 <div>
                     <p>[plaatje van shirt?]</p>
-                    <p><%= element.pasvorm %></p>
-                    <p>Maat: <%= element.maat %></p>
+                    <p><%= element.pasvorm %> </p>
                     <p>Kleur: <%= element.kleur %></p>
+                    <p>Maat: <%= element.maat %></p>
+                    <% if(element.tekst && element.tekst.length > 0) { %> 
+                        <p>Tekst: <%= element.tekst %> </p>
+                    <% } %> 
                     <a href="<%= `/studio/${userData.userid}/${element.shirtid}` %> ">Aanpassen</a>
                     <a href="<%= `/remove/${userData.userid}/${element.shirtid}?page=/dashboard` %> ">Verwijderen</a>
                     <a href="<%= `/order/${userData.userid}` %>">Bestellen</a>
@@ -24,7 +27,12 @@
             <% userData.orderedShirts.forEach(element => { %>
                 <div>
                     <p>plaatje van shirt?</p>
-                    <p>Status: <span class="<%= element.status %> "><%= element.status %></span></p>
+                    <p><%= element.pasvorm %> </p>
+                    <p>Kleur: <%= element.kleur %></p>
+                    <p>Maat: <%= element.maat %></p>
+                    <% if(element.tekst && element.tekst.length > 0) { %> 
+                        <p>Tekst: <%= element.tekst %> </p>
+                    <% } %> 
                     <p>Je kunt dit shirt niet meer aanpassen</p>
                 </div>
             <% }); %> 

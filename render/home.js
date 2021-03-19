@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import fs, { writeFile } from 'fs';
+import fs from 'fs';
 
 // Home page
 export function homeRoute(req, res) {

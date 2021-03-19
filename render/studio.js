@@ -6,7 +6,25 @@ export function studioRoute(req, res) {
         const userid = req.params.user;
         const shirtid = req.params.shirt;
 
-        res.render('studio', { title: "Design je eigen shirt", userid, shirtid });
+        // Get the data file
+        const dataFile = fs.readFileSync("./data/data.json");
+        // Parse JSON and convert to an array
+        const data = Array.from(JSON.parse(dataFile));
+        // Create an array with user id's > filter on provided user id
+        const ids = data.map(user => user.userid).filter(id => id == userid);
+
+        const shirtData = [];
+
+        if(ids.length > 0) {
+            const index = data.map(user => user.userid).indexOf(userid);
+            const savedShirts = data[index].savedShirts.map(shirt => shirt.shirtid).filter(id => id === shirtid);
+
+            if(savedShirts.length > 0) {
+                const indexShirt = data[index].savedShirts.map(shirt => shirt.shirtid).indexOf(shirtid);
+                shirtData.push(data[index].savedShirts[indexShirt]);
+            }
+        }
+        res.render('studio', { title: "Design je eigen shirt", userid, shirtid, shirtData });
     }
     else {
         res.render("404", { title: "Oeps, studio kan niet worden geladen", errorTitle: "Oeps, de ontwerpstudio kan niet worden geladen", errorDescription: "De ontwerpstudio heeft een ongeldige inlog- of t-shirtcode ontvangen en kan daardoor de ontwerpstudio niet tonen. Klik hieronder om een nieuwe sessie te starten.", errorLink: `/studio/${uniqid.time()}/${uniqid()}}`, errorLinkDescription: "Ontwerpstudio opnieuw starten" });   

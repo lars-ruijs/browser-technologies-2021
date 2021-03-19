@@ -6,6 +6,10 @@
     <p><%= userid %> </p>
     <a href="<%= `/studio/${userid}/${shirtid}` %> ">Nog een shirt maken?</a>
     <a href="<%= `/order/${userid}` %>">Direct bestellen</a>
+    <form action="/dashboard" method="POST">
+        <input type="hidden" value="<%= userid %>" name="logincode" id="logincode">
+        <input type="submit" value="Open dashboard">
+    </form>
 
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

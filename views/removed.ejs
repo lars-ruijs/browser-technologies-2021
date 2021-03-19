@@ -2,6 +2,13 @@
 <%- include('./partials/head.ejs') %> 
 
     <h2>Het shirt is succesvol verwijderd.</h2>
-    <a href=<%=nextStep%> >Terug</a>
+    <% if (nextStep === "/dashboard") { %> 
+        <form action="/dashboard" method="POST">
+            <input type="hidden" value="<%= userid %>" name="logincode" id="logincode">
+            <input type="submit" value="Terug naar dashboard">
+        </form>
+    <% } else { %> 
+    <a href=<%=nextStep%> >Terug naar besteloverzicht</a>
+    <% } %> 
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

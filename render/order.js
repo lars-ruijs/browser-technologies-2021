@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import fs, { writeFile } from 'fs';
+import fs from 'fs';
 
 // Overview of ordered (saved) shirts
 export function orderRoute(req, res) {
@@ -18,7 +18,7 @@ export function orderRoute(req, res) {
         if(ids.length > 0) {
             const index = data.map(user => user.userid).indexOf(userId);
             const shirts = data[index].savedShirts;
-            res.render("order", { title: "Bestel jouw Nerdshirts", userid: userId, shirts, newshirtid: uniqid()});
+            res.render("order", { title: "Bestel jouw Nerdshirts", userid: userId, shirts, newshirtid: uniqid(), userdata: data[index]});
         }
         else {
             res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt ingevuld is bij ons niet bekend. Controleer je code en probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
@@ -52,7 +52,7 @@ export function confirmRoute(req, res) {
             data[index].email = email;
             data[index].orderedShirts.push(...data[index].savedShirts);
             data[index].savedShirts = [];
-            res.send("Succesvol besteld");
+            res.render("ordered", {title: "Succesvol besteld!", userid: userId});
         }
         else {
             res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt gebruikt is niet juist, want we kennen het niet. Probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
@@ -85,7 +85,7 @@ export function removeRoute(req, res) {
                 if(shirt.shirtid === shirtId) {
                     data[index].savedShirts.splice(shirtIndex, 1);
                     if(req.query.page) {
-                        res.render("removed", { title: "Shirt is succesvol verwijderd!", nextStep: req.query.page});
+                        res.render("removed", { title: "Shirt is succesvol verwijderd!", nextStep: req.query.page, userid: userId});
                     }
                 }
             });

@@ -27,14 +27,14 @@
             <fieldset>
                 <legend>Je naam:</legend>
                 <label for="voornaam">Voornaam:</label><br>
-                <input type="text" id="voornaam" name="voornaam" required><br><br>
+                <input type="text" id="voornaam" name="voornaam" required <% if(userdata && userdata.voornaam) {%> value="<%= userdata.voornaam %>"<%}%>><br><br>
                 <label for="achternaam">Achternaam:</label><br>
-                <input type="text" id="achternaam" name="achternaam" required>
+                <input type="text" id="achternaam" name="achternaam" required <% if(userdata && userdata.achternaam) {%> value="<%= userdata.achternaam %>"<%}%>>
             </fieldset>        
             <fieldset>
                 <legend>Je e-mail:</legend>
                 <label for="email">E-mailadres:</label><br>
-                <input type="email" id="email" name="email" required><br>
+                <input type="email" id="email" name="email" required <% if(userdata && userdata.email) {%> value="<%= userdata.email %>"<%}%>><br>
                 <p>Wanneer je een NERD shirt besteld ontvang je op dit e-mailadres een afhaalbevestiging.</p>
                 <input type="submit" value="Bestelling plaatsen">
             </fieldset>

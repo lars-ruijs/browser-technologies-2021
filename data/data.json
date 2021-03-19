@@ -124,6 +124,54 @@
         "tekst": "Test als gast"
       }
     ],
+    "savedShirts": [
+      {
+        "shirtid": "cz17sh1jaikmgbtrgq",
+        "pasvorm": "man",
+        "maat": "large",
+        "kleur": "groen",
+        "tekst": "tdst"
+      }
+    ]
+  },
+  {
+    "userid": "kmg9uag0",
+    "voornaam": "",
+    "achternaam": "",
+    "email": "",
+    "orderedShirts": [],
+    "savedShirts": []
+  },
+  {
+    "userid": "kmgcggba",
+    "voornaam": "",
+    "achternaam": "",
+    "email": "",
+    "orderedShirts": [],
+    "savedShirts": [
+      {
+        "shirtid": "cz17sh1jelkmgcggbb",
+        "pasvorm": "vrouw",
+        "maat": "medium",
+        "kleur": "roze",
+        "tekst": ""
+      }
+    ]
+  },
+  {
+    "userid": "kmgcmxa4",
+    "voornaam": "Hendrik",
+    "achternaam": "Ruijs",
+    "email": "tetst@mail.com",
+    "orderedShirts": [
+      {
+        "shirtid": "cz17sh1jkjkmgcndqc",
+        "pasvorm": "man",
+        "maat": "small",
+        "kleur": "groen",
+        "tekst": "gozer"
+      }
+    ],
     "savedShirts": []
   }
 ]
