@@ -6,23 +6,7 @@ Robuuste, toegankelijke websites ontwerpen en maken …
 
 In het vak Browser Technologies gaan we onderzoeken wat Progressive Enhancement is en hoe je dit kan toepassen om goede, robuuste, toegankelijke websites te maken. Voor iedereen. Het web is voor iedereen, in dit vak leer je hoe je daarvoor kan zorgen.
 
-## Opdrachten
-
-het vak bestaat uit 3 opdrachten. In week 1 werken we aan opdracht 1 en 2. Vanaf week 2 werken we aan de eindopdracht.
-
-### Opdracht 1 🛹 NPM install Progressive- enhancement
-
-Voor de eerste opdracht gaan we onderzoeken wat Progressive Enhancement is.
-
-- [Opdracht 1 - NPM install Progressive Enhancement](course/Opdracht1.md)
-
-### Opdracht 2 💔 Breek het Web
-
-Voor opdracht 2 ga je proberen het Web te laten 'breken' door (browser) features bewust uit te zetten. Wat gebeurt er als images, custom fonts, JavaScript, kleur, breedband internet niet optimaal werken? 
-
-- [Opdracht 2 - Breek het Web](course/Opdracht2.md)
-
-### De eindopdracht ✨ Progressive Enhanced Browser Technologie
+## De eindopdracht ✨ Progressive Enhanced Browser Technologie
 
 Voor de eindopdracht ontwerp en maak je een interactieve toepassing volgens het principe van Progressive Enhancement. Zorg dat alle gebruikers, met alle browsers, in iedere context de toepassing zo goed mogelijk te zien, horen en/of voelen krijgen. De meest 'enhanced' versie is 'delightful UX', mooi en prettig om te gebruiken.
 
@@ -39,6 +23,7 @@ Ik heb gekozen voor de usecase: Nerdy T-shirt.
 <img src="https://user-images.githubusercontent.com/60745347/111468605-0954ee00-8726-11eb-9ab5-e05b99d6340a.JPG" alt="schets" width="60%" />
 <img src="https://user-images.githubusercontent.com/60745347/111468613-0c4fde80-8726-11eb-992f-953c7655efe7.JPG" alt="schets" width="60%" />
 
+## Layers
 ### Functional
 - De HTML content is zichtbaar en werkend
 - Formulier is te gebruiken en te versturen
@@ -51,6 +36,30 @@ Ik heb gekozen voor de usecase: Nerdy T-shirt.
 ### Pleasurable
 - T-shirt past zich aan op basis van geselecteerde opties
 - Formulier werkt als multi-step form
+
+
+## Core functionaliteit 
+De gebruiker wil online een eigen t-shirt kunnen ontwerpen, deze kunnen opslaan en bestellen.
+
+### Wireflow
+![IMG_3370](https://user-images.githubusercontent.com/60745347/112205824-82b47b00-8c15-11eb-98a1-aafb3e0ae870.JPG)
+
+### Demo 
+Bekijk de demo van de app [online](https://nerdshirt.herokuapp.com/).
+
+### Browsers
+Ik ga testen in onderstaande browsers:
+
+- Google Chrome (macOS)
+- Mozilla Firefox (macOS)
+- Safari (iOS)
+- Chrome (Android)
+
+### Enhancements
+- Vadility API. Meer info [hier](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)
+- Storage API. Meer info [hier](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API)
+- Vibration API (?). Meer info [hier](https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API)
+
 
 <!-- Add a link to your live demo in Github Pages 🌐-->
 
