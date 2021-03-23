@@ -1,14 +1,14 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
 
-    <div>
+    <section>
         <h2>Maak je eigen NERD shirt!</h2>
         <p>Ben jij een echte nerd geworden na de Minor Web Development? Dan is het nu je kans om dat te laten zien aan de rest van de wereld met je eigen NERD shirt.</p>
         <p>Een NERD shirt is nu beschikbaar voor slechts €24,99 inclusief btw. Je haalt je bestelling kosteloos af bij het Theo Thijssenhuis.</p>
         <a href=<%=`/studio/${userid}/${shirtid}`%>>Start ontwerpen</a>
-    </div>
+    </section>
 
-    <div>
+    <section>
         <h2>Inloggen</h2>
         <p>Heb je al een NERD shirt ontworpen? Dan kun je super eenvoudig je gemaakte shirt bekijken en aanpassen als je het shirt nog niet had besteld.</p>
         <form action="/dashboard" method="POST">
@@ -16,7 +16,7 @@
             <input type="text" name="logincode" id="logincode" minlength="8" maxlength="8"><br>
             <input type="submit" value="Inloggen">
         </form>
-    </div>
+    </section>
 
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

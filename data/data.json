@@ -173,5 +173,29 @@
       }
     ],
     "savedShirts": []
+  },
+  {
+    "userid": "kmi6g0d3",
+    "voornaam": "Vogel",
+    "achternaam": "Voer",
+    "email": "vigel@te.nf",
+    "orderedShirts": [
+      {
+        "shirtid": "cz17sh1kkokmi6hf8o",
+        "pasvorm": "man",
+        "maat": "medium",
+        "kleur": "rood",
+        "tekst": "Gted"
+      }
+    ],
+    "savedShirts": [
+      {
+        "shirtid": "cz17sh1klpkmi6oq2y",
+        "pasvorm": "man",
+        "maat": "extra-large",
+        "kleur": "groen",
+        "tekst": "Grien"
+      }
+    ]
   }
 ]
