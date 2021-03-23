@@ -67,7 +67,7 @@ export function confirmRoute(req, res) {
 }
 
 export function removeRoute(req, res) {
-    if(req.params.user && req.params.user.length === 8 && req.params.shirt && req.params.shirt.length === 18) {
+    if(req.params.user && req.params.user.length === 8 && req.params.shirt) {
         const userId = req.params.user;
         const shirtId = req.params.shirt;
 

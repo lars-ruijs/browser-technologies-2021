@@ -2,7 +2,7 @@ import uniqid from 'uniqid';
 import fs, { writeFile } from 'fs';
 
 export function studioRoute(req, res) {
-    if(req.params.user && req.params.user.length === 8 && req.params.shirt && req.params.shirt.length === 18){
+    if(req.params.user && req.params.user.length === 8 && req.params.shirt){
         const userid = req.params.user;
         const shirtid = req.params.shirt;
 
