@@ -1,10 +1,15 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-<main>
+<main class="page">
+    <% if(errorTitle.includes("inlog") || errorTitle.includes("studio")) { %> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="5em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#6259f5" d="M14 9v2h-4v-2c0-1.104.897-2 2-2s2 .896 2 2zm10 3c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-8-1h-1v-2c0-1.656-1.343-3-3-3s-3 1.344-3 3v2h-1v6h8v-6z"/></svg>
+    <% } else { %> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="5em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#6259f5" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 18.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25s-.559 1.25-1.25 1.25zm1.961-5.928c-.904.975-.947 1.514-.935 2.178h-2.005c-.007-1.475.02-2.125 1.431-3.468.573-.544 1.025-.975.962-1.821-.058-.805-.73-1.226-1.365-1.226-.709 0-1.538.527-1.538 2.013h-2.01c0-2.4 1.409-3.95 3.59-3.95 1.036 0 1.942.339 2.55.955.57.578.865 1.372.854 2.298-.016 1.383-.857 2.291-1.534 3.021z"/></svg>
+        <% } %> 
     <h2><%= errorTitle %> </h2>
     <p><%= errorDescription %> </p>
     <% if(errorLink && errorLinkDescription) { %>
-        <a href="<%= errorLink %> "><%= errorLinkDescription %> </a>
+        <a class="primary" href="<%= errorLink %> "><%= errorLinkDescription %> </a>
     <% } %> 
 </main>
 <%# Include the footer module (partial) %> 

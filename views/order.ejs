@@ -1,38 +1,39 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-<main>
+<main class="page order">
     <h2>NERD shirt bestellen</h2>
-    <p>Je custom NERD shirts kun je afhalen bij de copyshop van het Theo Thijssenhuis. Na je bestelling ontvang je een afhaalbevestiging. Betalen doe je bij het afhalen.</p>
+    <p>Je custom NERD shirts kun je afhalen bij de copyshop van het Theo Thijssenhuis. Na je bestelling ontvang je een afhaalbevestiging per e-mail. Bij het afhalen van je bestelling heb je deze bevestiging nodig.</p>
     <% if(shirts.length > 0) { %> 
         <h3>In je winkelwagen (<%= shirts.length %>):</h3>
-        <p>Dit zijn alle NERD shirts die je hebt opgeslagen.</p>
-        <% shirts.forEach(element => { %>
-            <div>
-                <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
-                <p><%= element.pasvorm %> </p>
-                <p>Kleur: <%= element.kleur %></p>
-                <p>Maat: <%= element.maat %></p>
-                <% if(element.tekst && element.tekst.length > 0) { %> 
-                    <p>Tekst: <%= element.tekst %> </p>
-                <% } %> 
-                <a href="<%= `/remove/${userid}/${element.shirtid}?page=/order/${userid}` %> ">Verwijderen</a>
-                <p>Prijs: € 24,99</p>
-            </div>
-        <% }); %> 
+        <section class="products">
+            <% shirts.forEach(element => { %>
+                <div class="product">
+                    <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
+                    <p>€ 24,99</p>
+                    <p><%= element.pasvorm %> • <%= element.maat %></p>
+                    <p><span class="<%= element.kleur %>"></span> <%= element.kleur %></p>
+                    <% if(element.tekst && element.tekst.length > 0) { %> 
+                        <p><span>Tekst:</span> <%= element.tekst %> </p>
+                    <% } %> 
+                    <a class="remove" href="<%= `/remove/${userid}/${element.shirtid}?page=/order/${userid}` %> "><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z"/></svg>Verwijderen</a>
+                </div>
+            <% }); %> 
+        </section>
         <p>Totaalbedrag: € <%= shirts.length * 24.99 %> </p>
+        <p>Je betaald het totaalbedrag bij het afhalen van je bestelling.</p>
         <h3>Jouw gegevens</h3>
         <p>Om je bestelling te kunnen plaatsen, hebben we wat informatie van je nodig.</p>
         <form action="/confirmorder" method="POST">
             <input type="hidden" id="userid" name="userid" value="<%= userid %>">
             <fieldset>
-                <legend>Je naam:</legend>
+                <legend>Wie komt de bestelling ophalen?</legend>
                 <label for="voornaam">Voornaam:</label><br>
                 <input type="text" id="voornaam" name="voornaam" required <% if(userdata && userdata.voornaam) {%> value="<%= userdata.voornaam %>"<%}%>><br><br>
                 <label for="achternaam">Achternaam:</label><br>
                 <input type="text" id="achternaam" name="achternaam" required <% if(userdata && userdata.achternaam) {%> value="<%= userdata.achternaam %>"<%}%>>
             </fieldset>        
             <fieldset>
-                <legend>Je e-mail:</legend>
+                <legend>Waar kunnen we je bereiken?</legend>
                 <label for="email">E-mailadres:</label><br>
                 <input type="email" id="email" name="email" required <% if(userdata && userdata.email) {%> value="<%= userdata.email %>"<%}%>><br>
                 <p>Wanneer je een NERD shirt besteld ontvang je op dit e-mailadres een afhaalbevestiging.</p>
@@ -40,9 +41,14 @@
             </fieldset>
         </form>
     <% } else { %> 
-        <h3>Er zitten nog geen producten in je account opgeslagen</h3>
-        <p>Wordt het tijd om iets te bestellen?</p>
-        <a href="<%= `/studio/${userid}/${newshirtid}` %>">Direct shirt ontwerpen</a>
+        <div class="error">
+            <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.975 8l.025-.5c0-.517-.067-1.018-.181-1.5h5.993l-.564 2h-5.273zm-2.475 10c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm11.305-15l-3.432 12h-10.428l-.455-1.083c-.323.049-.653.083-.99.083-.407 0-.805-.042-1.191-.114l1.306 3.114h13.239l3.474-12h1.929l.743-2h-4.195zm-6.305 15c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-4.5-10.5c0 2.485-2.017 4.5-4.5 4.5s-4.5-2.015-4.5-4.5 2.017-4.5 4.5-4.5 4.5 2.015 4.5 4.5zm-3.086-2.122l-1.414 1.414-1.414-1.414-.707.707 1.414 1.415-1.414 1.414.707.708 1.414-1.415 1.414 1.414.708-.708-1.414-1.413 1.414-1.414-.708-.708z"/></svg>
+            <h3>Er zijn nog geen producten in je account opgeslagen</h3>
+            <p>Wordt het tijd om iets te bestellen?</p>
+            <a class="primary" href="<%= `/studio/${userid}/${newshirtid}` %>">Direct shirt ontwerpen <svg class="next" xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+              </svg></a>
+        </div>
     <% } %> 
 </main>
 <%# Include the footer module (partial) %> 

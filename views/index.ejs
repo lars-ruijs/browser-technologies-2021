@@ -1,6 +1,6 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-<main>
+<main class="home">
     <section>
         <h2>Maak je eigen NERD shirt!</h2>
         <p>Ben jij een echte nerd geworden na de Minor Web Development? Dan is het nu je kans om dat te laten zien aan de rest van de wereld met je eigen NERD shirt.</p>
@@ -15,7 +15,7 @@
         <p>Heb je al een NERD shirt ontworpen? Dan kun je super eenvoudig je gemaakte shirt bekijken en aanpassen als je het shirt nog niet had besteld.</p>
         <form action="/dashboard" method="POST">
             <label for="logincode">Login met je 8 delige code</label><br>
-            <input type="text" name="logincode" id="logincode" minlength="8" maxlength="8" required><br>
+            <input type="text" name="logincode" value="" id="logincode" minlength="8" maxlength="8" required><br>
             <input type="submit" value="Inloggen">
         </form>
     </section>

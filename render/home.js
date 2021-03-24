@@ -35,6 +35,9 @@ export function dashboardRoute(req, res) {
             res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt ingevuld is bij ons niet bekend. Controleer je code en probeer het opnieuw.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
         }
     }
+    else {
+        res.status(401).render("404", { title: "Onjuiste inlogcode", errorTitle: "Je inlogcode is onjuist", errorDescription: "De inlogcode die je hebt ingevuld is bij ons niet bekend. Controleer je code en probeer het opnieuw. Let op! Je code is minimaal 8 karakters lang.", errorLink: "/", errorLinkDescription: "Probeer het opnieuw" });   
+    }
 }
 
 // export function userCreationRoute(req, res) {

@@ -99,7 +99,7 @@ export function shirtCreationRoute(req, res) {
          res.render("shirtcreated", { title: "T-shirt opgeslagen!", userid: userId, shirtid: uniqid()});
     }
     else {
-        res.render("404", { title: "T-shirt kon niet worden opgeslagen", errorTitle: "Oeps, je NERD shirt kon niet worden opgeslagen", errorDescription: "Niet alle vereiste gegevens zijn ingevuld. Ga terug naar de vorige pagina en zorg ervoor dat alle vereiste velden zijn ingevuld." });   
+        res.render("404", { title: "T-shirt kon niet worden opgeslagen", errorTitle: "Oeps, je NERD shirt kon niet worden opgeslagen", errorDescription: "Niet alle vereiste gegevens zijn ingevuld. Ga terug naar de vorige pagina en zorg ervoor dat alle vereiste velden zijn ingevuld.", errorLink: null, errorLinkDescription: null });   
     }
 }
 

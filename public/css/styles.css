@@ -43,7 +43,7 @@ main {
   margin: 0 auto;
 }
 
-main section,
+main.home section,
 main div.studio,
 main.page {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -56,11 +56,11 @@ main.page {
   font-weight: 300;
 }
 
-main section {
+main.home section {
   margin: 2em 0;
 }
 
-main section h2 {
+main.home section h2 {
   color: #ffffff;
   background-color: #6259f5;
   margin: -1.3em -1.9em 1.5em -1.9em;
@@ -123,16 +123,50 @@ input[type="submit"]:active {
 }
 
 a.primary svg.next {
-  margin: 0.17em 0 0 0.5em;
+  margin: 0.25em 0 0 0.5em;
 }
 
 a.primary svg,
-a.secundary svg {
+a.secundary svg,
+a.remove svg {
   margin: 0 0.5em 0 0;
+}
+
+a.remove {
+  display: inline-flex;
+  text-decoration: none;
+  vertical-align: middle;
+  color: #d4351c;
+  margin-top: 0.8em;
+}
+
+a.remove:hover {
+  font-weight: bold;
+  color: #a12714;
+}
+
+a.remove:focus {
+  background-color: #fd0;
+  box-shadow: 0 3px 0 #000000;
+  outline: none;
+}
+
+a.remove.edit {
+  color: #6259f5;
+}
+
+a.remove.edit:hover {
+  color: #4843b9;
+}
+
+main.page form {
+  margin: 2em 0;
 }
 
 form fieldset {
   border: none;
+  padding: 0;
+  margin: 0;
 }
 
 form fieldset legend {
@@ -149,7 +183,8 @@ form label {
   margin: 1em 0 0.8em 0;
 }
 
-form input[type="text"] {
+form input[type="text"],
+form input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -161,7 +196,8 @@ form input[type="text"] {
   font-size: 1em;
 }
 
-form input[type="text"]:focus {
+form input[type="text"]:focus,
+form input[type="email"]:focus {
   border: 3px solid #6259f5;
   outline: none;
 }
@@ -210,24 +246,24 @@ input[type="radio"] {
   opacity: 0;
 }
 
-input[type="radio"]:checked + label,
-input[type="radio"]:focus + label {
+div.studio fieldset input[type="radio"]:checked + label,
+div.studio fieldset input[type="radio"]:focus + label {
   border: 3px solid #6259f5;
   color: #6259f5;
 }
 
-fieldset {
+div.studio fieldset {
   padding: 0.5em 1em 2em 1em;
 }
 
-fieldset:not(:last-of-type) {
+div.studio fieldset:not(:last-of-type) {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
 
-fieldset label:not(label[for="shirttekst"]) {
+div.studio fieldset label:not(label[for="shirttekst"]) {
   text-align: center;
   border: 1.5px solid #a1a1a1;
   padding: 1em;
@@ -241,7 +277,8 @@ label.kleur {
   justify-content: center;
 }
 
-label.kleur span {
+label.kleur span,
+div.product p:nth-of-type(3) span {
   display: inline-block;
   width: 1.2em;
   height: 1.2em;
@@ -249,23 +286,28 @@ label.kleur span {
   margin: 0 0.5em 0 0;
 }
 
-label[for="rood"] span {
+label[for="rood"] span,
+div.product span.rood {
   background-color: #a60628;
 }
 
-label[for="groen"] span {
+label[for="groen"] span,
+div.product span.groen {
   background-color: #0f777c;
 }
 
-label[for="blauw"] span {
+label[for="blauw"] span,
+div.product span.blauw {
   background-color: #01a5e6;
 }
 
-label[for="oranje"] span {
+label[for="oranje"] span,
+div.product span.oranje {
   background-color: #e46c07;
 }
 
-label[for="roze"] span {
+label[for="roze"] span,
+div.product span.roze {
   background-color: #e3717f;
 }
 
@@ -294,8 +336,11 @@ main.page div.code {
   cursor: text;
 }
 
-main.page div.confirm h2 {
+main.page div.confirm {
   text-align: center;
+}
+
+main.page div.confirm h2 {
   color: #0d9c00;
 }
 
@@ -308,4 +353,61 @@ main.page div.confirm svg {
 
 main.page div.confirm {
   margin: 4em 0;
+}
+
+main.page div.error {
+  text-align: center;
+  fill: #d4351c;
+}
+
+main.page div.error h3 {
+  color: #d4351c;
+}
+
+main.page section.products {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+
+main.page div.product {
+  box-shadow: 0px 4px 10px #00000029;
+  border-radius: 0.4em;
+  padding: 2em 3em;
+  width: 10em;
+  margin: 0 1.5em 1.5em 0;
+}
+
+main.page div.product img {
+  width: 5em;
+}
+
+main.page div.product p:first-of-type {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-transform: capitalize;
+}
+
+main.page div.product p:nth-of-type(2),
+main.page div.product p:nth-of-type(3) {
+  text-transform: capitalize;
+  margin: 0 0 0.3em 0;
+}
+
+main.page div.product p:nth-of-type(3) {
+  display: inline-flex;
+}
+
+main.page div.product p:nth-of-type(4) span {
+  font-weight: bold;
+}
+
+main.page.order p:nth-of-type(2):not(main.page div.product p:nth-of-type(2)) {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 3em 0 0 0;
+}
+
+main.page.order p:nth-of-type(3) {
+  margin: 0.5em 0 2em 0;
 }
