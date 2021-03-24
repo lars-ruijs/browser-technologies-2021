@@ -1,51 +1,50 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-
-    <main>
-        <div>
-            <img src="/img/shirtmanzwart.jpg" alt="afbeelding van een zwart shirt voor een man">
-            <form action="/createshirt" method="POST">
-                <input type="hidden" id="userid" name="userid" value="<%= userid %>">
-                <input type="hidden" id="shirtid" name="shirtid" value="<%= shirtid %>">
-                <fieldset>
-                    <legend>Voor wie is het shirt?</legend>
-                    <input type="radio" id="man" name="pasvorm" value="man" required <% if(shirtData.length > 0 && shirtData[0].pasvorm === "man") {%> <%= "checked" %> <%}%>>
-                    <label for="man">Man</label><br>
-                    <input type="radio" id="vrouw" name="pasvorm" value="vrouw" required <% if(shirtData.length > 0 && shirtData[0].pasvorm === "vrouw") {%> <%= "checked" %> <%}%>>
-                    <label for="vrouw">Vrouw</label>
-                </fieldset> 
-                <fieldset>
-                    <legend>In welke maat wil je het shirt?</legend>
-                    <input type="radio" id="small" name="maat" value="small" required <% if(shirtData.length > 0 && shirtData[0].maat === "small") {%> <%= "checked" %> <%}%>>
-                    <label for="small">Small</label><br>
-                    <input type="radio" id="medium" name="maat" value="medium" required <% if(shirtData.length > 0 && shirtData[0].maat === "medium") {%> <%= "checked" %> <%}%>>
-                    <label for="medium">Medium</label><br>
-                    <input type="radio" id="large" name="maat" value="large" required <% if(shirtData.length > 0 && shirtData[0].maat === "large") {%> <%= "checked" %> <%}%>>
-                    <label for="large">Large</label><br>
-                    <input type="radio" id="extra-large" name="maat" value="extra-large" required <% if(shirtData.length > 0 && shirtData[0].maat === "extra-large") {%> <%= "checked" %> <%}%>>
-                    <label for="extra-large">Extra large</label>
-                </fieldset>
-                <fieldset>
-                    <legend>Welke kleur krijgt jouw NERD shirt?</legend>
-                    <input type="radio" id="rood" name="kleur" value="rood" required <% if(shirtData.length > 0 && shirtData[0].kleur === "rood") {%> <%= "checked" %> <%}%>>
-                    <label for="rood">Rood</label><br>
-                    <input type="radio" id="groen" name="kleur" value="groen" required <% if(shirtData.length > 0 && shirtData[0].kleur === "groen") {%> <%= "checked" %> <%}%>>
-                    <label for="groen">Groen</label><br>
-                    <input type="radio" id="blauw" name="kleur" value="blauw" required <% if(shirtData.length > 0 && shirtData[0].kleur === "blauw") {%> <%= "checked" %> <%}%>>
-                    <label for="blauw">Blauw</label><br>
-                    <input type="radio" id="oranje" name="kleur" value="oranje" required <% if(shirtData.length > 0 && shirtData[0].kleur === "oranje") {%> <%= "checked" %> <%}%>>
-                    <label for="oranje">Oranje</label><br>
-                    <input type="radio" id="roze" name="kleur" value="roze" required <% if(shirtData.length > 0 && shirtData[0].kleur === "roze") {%> <%= "checked" %> <%}%>>
-                    <label for="roze">Roze</label><br>
-                </fieldset> 
-                <fieldset>
-                    <legend>Maak je NERD shirt extra persoonlijk</legend>
-                    <label for="shirttekst">Type een tekst voor op je shirt - optioneel</label><br>
-                    <input type="text" id="shirttekst" name="shirttekst" <% if(shirtData.length > 0 && shirtData[0].tekst) {%> value="<%= shirtData[0].tekst %>"<%}%>><br><br>
-                    <input type="submit" name="opslaan" id="opslaan" value="Shirt opslaan">
-                </fieldset>           
-        </div>
-    </main>
-
+<main>
+    <div class="studio">
+        <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
+        <form action="/createshirt" method="POST">
+            <input type="hidden" id="userid" name="userid" value="<%= userid %>">
+            <input type="hidden" id="shirtid" name="shirtid" value="<%= shirtid %>">
+            <fieldset>
+                <legend>Voor wie is het shirt?</legend>
+                <input type="radio" id="man" name="pasvorm" value="man" required <% if(shirtData.length > 0 && shirtData[0].pasvorm === "man") {%> <%= "checked" %> <%}%>>
+                <label for="man">Man</label><br>
+                <input type="radio" id="vrouw" name="pasvorm" value="vrouw" required <% if(shirtData.length > 0 && shirtData[0].pasvorm === "vrouw") {%> <%= "checked" %> <%}%>>
+                <label for="vrouw">Vrouw</label>
+            </fieldset> 
+            <fieldset>
+                <legend>In welke maat wil je het shirt?</legend>
+                <input type="radio" id="small" name="maat" value="small" required <% if(shirtData.length > 0 && shirtData[0].maat === "small") {%> <%= "checked" %> <%}%>>
+                <label for="small">Small</label><br>
+                <input type="radio" id="medium" name="maat" value="medium" required <% if(shirtData.length > 0 && shirtData[0].maat === "medium") {%> <%= "checked" %> <%}%>>
+                <label for="medium">Medium</label><br>
+                <input type="radio" id="large" name="maat" value="large" required <% if(shirtData.length > 0 && shirtData[0].maat === "large") {%> <%= "checked" %> <%}%>>
+                <label for="large">Large</label><br>
+                <input type="radio" id="extra-large" name="maat" value="extra-large" required <% if(shirtData.length > 0 && shirtData[0].maat === "extra-large") {%> <%= "checked" %> <%}%>>
+                <label for="extra-large">Extra large</label>
+            </fieldset>
+            <fieldset>
+                <legend>Welke kleur krijgt jouw NERD shirt?</legend>
+                <input type="radio" id="rood" name="kleur" value="rood" required <% if(shirtData.length > 0 && shirtData[0].kleur === "rood") {%> <%= "checked" %> <%}%>>
+                <label for="rood" class="kleur"><span></span> Rood</label><br>
+                <input type="radio" id="groen" name="kleur" value="groen" required <% if(shirtData.length > 0 && shirtData[0].kleur === "groen") {%> <%= "checked" %> <%}%>>
+                <label for="groen" class="kleur"><span></span> Groen</label><br>
+                <input type="radio" id="blauw" name="kleur" value="blauw" required <% if(shirtData.length > 0 && shirtData[0].kleur === "blauw") {%> <%= "checked" %> <%}%>>
+                <label for="blauw" class="kleur"><span></span> Blauw</label><br>
+                <input type="radio" id="oranje" name="kleur" value="oranje" required <% if(shirtData.length > 0 && shirtData[0].kleur === "oranje") {%> <%= "checked" %> <%}%>>
+                <label for="oranje" class="kleur"><span></span> Oranje</label><br>
+                <input type="radio" id="roze" name="kleur" value="roze" required <% if(shirtData.length > 0 && shirtData[0].kleur === "roze") {%> <%= "checked" %> <%}%>>
+                <label for="roze" class="kleur"><span></span> Roze</label><br>
+            </fieldset> 
+            <fieldset>
+                <legend>Maak je NERD shirt extra persoonlijk</legend>
+                <label for="shirttekst">Type een tekst voor op je shirt <span>optioneel</span></label><br>
+                <input type="text" id="shirttekst" name="shirttekst" <% if(shirtData.length > 0 && shirtData[0].tekst) {%> value="<%= shirtData[0].tekst %>"<%}%>><br><br>
+                <input type="submit" name="opslaan" id="opslaan" value="Shirt opslaan">
+            </fieldset>  
+        </form>         
+    </div>
+</main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

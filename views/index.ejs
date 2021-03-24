@@ -1,11 +1,13 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-
+<main>
     <section>
         <h2>Maak je eigen NERD shirt!</h2>
         <p>Ben jij een echte nerd geworden na de Minor Web Development? Dan is het nu je kans om dat te laten zien aan de rest van de wereld met je eigen NERD shirt.</p>
         <p>Een NERD shirt is nu beschikbaar voor slechts €24,99 inclusief btw. Je haalt je bestelling kosteloos af bij het Theo Thijssenhuis.</p>
-        <a href=<%=`/studio/${userid}/${shirtid}`%>>Start ontwerpen</a>
+        <a class="primary" href=<%=`/studio/${userid}/${shirtid}`%>>Start ontwerpen  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+          </svg></a>
     </section>
 
     <section>
@@ -13,10 +15,10 @@
         <p>Heb je al een NERD shirt ontworpen? Dan kun je super eenvoudig je gemaakte shirt bekijken en aanpassen als je het shirt nog niet had besteld.</p>
         <form action="/dashboard" method="POST">
             <label for="logincode">Login met je 8 delige code</label><br>
-            <input type="text" name="logincode" id="logincode" minlength="8" maxlength="8"><br>
+            <input type="text" name="logincode" id="logincode" minlength="8" maxlength="8" required><br>
             <input type="submit" value="Inloggen">
         </form>
     </section>
-
+</main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

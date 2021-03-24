@@ -1,5 +1,6 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
+<main>
     <a href="/">Uitloggen</a>
     <h2>Welkom<%= userData.voornaam ? " "+userData.voornaam : "" %>!</h2>
     <p>Op deze pagina vind je een overzicht van je gemaakte NERD shirts. Als een shirt nog niet is besteld, kun je het shirt nog aanpassen.</p>
@@ -9,7 +10,7 @@
             <h3>Opgeslagen NERD shirts:</h3>
             <% userData.savedShirts.forEach(element => { %>
                 <div>
-                    <img src="/img/shirtmanzwart.jpg" alt="afbeelding van een zwart shirt voor een man">
+                    <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
                     <p><%= element.pasvorm %> </p>
                     <p>Kleur: <%= element.kleur %></p>
                     <p>Maat: <%= element.maat %></p>
@@ -26,7 +27,7 @@
             <h3>Bestelde NERD shirts:</h3>
             <% userData.orderedShirts.forEach(element => { %>
                 <div>
-                    <img src="/img/shirtmanzwart.jpg" alt="afbeelding van een zwart shirt voor een man">
+                    <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
                     <p><%= element.pasvorm %> </p>
                     <p>Kleur: <%= element.kleur %></p>
                     <p>Maat: <%= element.maat %></p>
@@ -48,6 +49,6 @@
             <a href=<%= `/studio/${userData.userid}/${shirtid}` %> >Nieuw shirt maken</a>
         </div>
     </div>
-
+</main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

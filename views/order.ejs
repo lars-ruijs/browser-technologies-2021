@@ -1,6 +1,6 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-
+<main>
     <h2>NERD shirt bestellen</h2>
     <p>Je custom NERD shirts kun je afhalen bij de copyshop van het Theo Thijssenhuis. Na je bestelling ontvang je een afhaalbevestiging. Betalen doe je bij het afhalen.</p>
     <% if(shirts.length > 0) { %> 
@@ -8,7 +8,7 @@
         <p>Dit zijn alle NERD shirts die je hebt opgeslagen.</p>
         <% shirts.forEach(element => { %>
             <div>
-                <img src="/img/shirtmanzwart.jpg" alt="afbeelding van een zwart shirt voor een man">
+                <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
                 <p><%= element.pasvorm %> </p>
                 <p>Kleur: <%= element.kleur %></p>
                 <p>Maat: <%= element.maat %></p>
@@ -44,5 +44,6 @@
         <p>Wordt het tijd om iets te bestellen?</p>
         <a href="<%= `/studio/${userid}/${newshirtid}` %>">Direct shirt ontwerpen</a>
     <% } %> 
+</main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

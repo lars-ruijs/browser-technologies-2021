@@ -1,11 +1,11 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-
+<main>
     <h2><%= errorTitle %> </h2>
     <p><%= errorDescription %> </p>
     <% if(errorLink && errorLinkDescription) { %>
         <a href="<%= errorLink %> "><%= errorLinkDescription %> </a>
     <% } %> 
-
+</main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

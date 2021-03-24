@@ -1,6 +1,6 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-
+<main>
     <h2>Het shirt is succesvol verwijderd.</h2>
     <% if (nextStep === "/dashboard") { %> 
         <form action="/dashboard" method="POST">
@@ -10,5 +10,6 @@
     <% } else { %> 
     <a href=<%=nextStep%> >Terug naar besteloverzicht</a>
     <% } %> 
+</main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 

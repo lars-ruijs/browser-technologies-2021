@@ -1,6 +1,6 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
-
+<main>
     <h2>Je shirt is succesvol opgeslagen!</h2>
     <p>Je kunt je opgeslagen NERD shirt terugvinden via onderstaande account code. Bewaar de code goed!</p>
     <p><%= userid %> </p>
@@ -10,6 +10,6 @@
         <input type="hidden" value="<%= userid %>" name="logincode" id="logincode">
         <input type="submit" value="Open dashboard">
     </form>
-
+</main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 
