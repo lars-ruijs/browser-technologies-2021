@@ -69,12 +69,12 @@ main.home section h2 {
   font-size: 1.6em;
 }
 
+/* SUPPORT */
 a.primary,
 a.secundary {
-  display: inline-flex;
+  display: inline-block;
   padding: 1em;
   text-decoration: none;
-  vertical-align: middle;
   font-weight: bold;
   margin: 1em 0;
   border-radius: 0.3em;
@@ -132,10 +132,10 @@ a.remove svg {
   margin: 0 0.5em 0 0;
 }
 
+/* SUPPORT */
 a.remove {
-  display: inline-flex;
+  display: inline-block;
   text-decoration: none;
-  vertical-align: middle;
   color: #d4351c;
   margin-top: 0.8em;
 }
@@ -213,17 +213,17 @@ footer {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+/* SUPPORT */
 button,
 input[type="submit"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  display: inline-flex;
+  display: inline-block;
   background-color: #6259f5;
   color: #ffffff;
   padding: 1em;
   text-decoration: none;
-  vertical-align: middle;
   font-weight: bold;
   margin: 1em 0;
   border-radius: 0.3em;
@@ -256,14 +256,13 @@ div.studio fieldset {
   padding: 0.5em 1em 2em 1em;
 }
 
-div.studio fieldset:not(:last-of-type) {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+/* SUPPORT */
+div.studio fieldset {
+  display: block;
 }
 
-div.studio fieldset label:not(label[for="shirttekst"]) {
+div.studio fieldset label.option,
+div.studio fieldset label.kleur {
   text-align: center;
   border: 1.5px solid #a1a1a1;
   padding: 1em;
@@ -272,9 +271,9 @@ div.studio fieldset label:not(label[for="shirttekst"]) {
   border-radius: 0.3em;
 }
 
+/* SUPPORT */
 label.kleur {
-  display: inline-flex;
-  justify-content: center;
+  display: inline-block;
 }
 
 label.kleur span,
@@ -364,10 +363,9 @@ main.page div.error h3 {
   color: #d4351c;
 }
 
+/* SUPPORT */
 main.page section.products {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 2em 0;
+  display: block;
 }
 
 main.page div.product {
@@ -394,15 +392,16 @@ main.page div.product p:nth-of-type(3) {
   margin: 0 0 0.3em 0;
 }
 
+/* SUPPORT */
 main.page div.product p:nth-of-type(3) {
-  display: inline-flex;
+  display: inline-block;
 }
 
 main.page div.product p:nth-of-type(4) span {
   font-weight: bold;
 }
 
-main.page.order p:nth-of-type(2):not(main.page div.product p:nth-of-type(2)) {
+main.page.order p.totalprice {
   font-weight: bold;
   font-size: 1.1em;
   margin: 3em 0 0 0;
@@ -410,4 +409,35 @@ main.page.order p:nth-of-type(2):not(main.page div.product p:nth-of-type(2)) {
 
 main.page.order p:nth-of-type(3) {
   margin: 0.5em 0 2em 0;
+}
+
+@supports (display: flex) {
+  div.studio fieldset:not(:last-of-type) {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  main.page section.products {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2em 0;
+  }
+}
+
+@supports (display: inline-flex) {
+  a.primary,
+  a.secundary {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  a.remove {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  label.kleur {
+    display: inline-flex;
+  }
+  main.page div.product p:nth-of-type(3) {
+    display: inline-flex;
+  }
 }
