@@ -204,6 +204,10 @@ form input[type="email"] {
   font-size: 1em;
 }
 
+form input[type="text"] {
+  margin: 0;
+}
+
 form input[type="text"]:focus,
 form input[type="email"]:focus {
   border: 3px solid #6259f5;
@@ -242,10 +246,30 @@ input[type="submit"] {
   font-size: 1.1em;
 }
 
-div.studio img {
+div.studio div.preview {
+  position: relative;
+  text-align: center;
+  width: 15em;
+  margin: 0 auto;
+}
+
+div.studio div.preview img {
   display: block;
   margin: 0 auto;
-  max-width: 30%;
+  max-width: 100%;
+}
+
+div.studio div.preview p {
+  hyphens: auto;
+  width: 6em;
+  max-height: 9.5em;
+  overflow: hidden;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 25%;
+  left: 32%;
 }
 
 input[type="radio"] {
@@ -261,7 +285,8 @@ div.studio fieldset input[type="radio"]:focus + label {
 }
 
 div.studio fieldset {
-  padding: 0.5em 1em 2em 1em;
+  padding: 0;
+  margin: 1.5em 0;
 }
 
 /* SUPPORT */
@@ -420,7 +445,7 @@ main.page.order p:nth-of-type(3) {
 }
 
 @supports (display: flex) {
-  div.studio fieldset:not(:last-of-type) {
+  div.studio fieldset:not(fieldset:nth-of-type(3)) {
     position: relative;
     display: flex;
     flex-wrap: wrap;
