@@ -10,7 +10,7 @@
             <section class="products">
                 <% userData.savedShirts.forEach(element => { %>
                     <div class="product">
-                        <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
+                        <img src="<%= `/img/shirt${element.pasvorm}${element.kleur}.png` %>" alt="<%= `afbeelding van een ${element.kleur} shirt voor een ${element.pasvorm}` %>">
                         <% if(element.pasvorm.includes("man")){ %>
                             <p><%=`${element.pasvorm}nen shirt`%></p>
                         <%} else {%>
@@ -33,7 +33,7 @@
             <section class="products">
             <% userData.orderedShirts.forEach(element => { %>
                 <div class="product">
-                    <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
+                    <img src="<%= `/img/shirt${element.pasvorm}${element.kleur}.png` %>" alt="<%= `afbeelding van een ${element.kleur} shirt voor een ${element.pasvorm}` %>">
                     <% if(element.pasvorm.includes("man")){ %>
                         <p><%=`${element.pasvorm}nen shirt`%></p>
                     <%} else {%>

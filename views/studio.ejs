@@ -2,7 +2,11 @@
 <%- include('./partials/head.ejs') %> 
 <main>
     <div class="studio">
+        <% if(shirtData.length > 0 && shirtData[0].kleur && shirtData[0].pasvorm) { %> 
+            <img src="<%= `/img/shirt${shirtData[0].pasvorm}${shirtData[0].kleur}.png` %>" alt="<%= `afbeelding van een ${shirtData[0].kleur} shirt voor een ${shirtData[0].pasvorm}` %>">
+        <% } else { %> 
         <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
+        <% } %> 
         <form action="/createshirt" method="POST">
             <input type="hidden" id="userid" name="userid" value="<%= userid %>">
             <input type="hidden" id="shirtid" name="shirtid" value="<%= shirtid %>">

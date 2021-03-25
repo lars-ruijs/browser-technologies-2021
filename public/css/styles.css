@@ -95,6 +95,7 @@ a.secundary {
 }
 
 a.primary:hover,
+a.secundary:hover,
 button:hover,
 input[type="submit"]:hover {
   cursor: pointer;
@@ -104,6 +105,7 @@ input[type="submit"]:hover {
 }
 
 a.primary:focus,
+a.secundary:focus,
 button:focus,
 input[type="submit"]:focus {
   background-color: #fd0;
@@ -114,12 +116,18 @@ input[type="submit"]:focus {
 }
 
 a.primary:active,
+a.secundary:active,
 button:active,
 input[type="submit"]:active {
   background-color: #393496;
   color: #ffffff;
   box-shadow: 0 0.5px 0 #272363;
   transform: translateY(0.2em);
+}
+
+a.secundary:hover {
+  border: 2px solid #4843b9;
+  color: #ffffff;
 }
 
 a.primary svg.next {
@@ -297,7 +305,7 @@ div.product span.groen {
 
 label[for="blauw"] span,
 div.product span.blauw {
-  background-color: #01a5e6;
+  background-color: #134d8d;
 }
 
 label[for="oranje"] span,
