@@ -441,3 +441,27 @@ main.page.order p:nth-of-type(3) {
     display: inline-flex;
   }
 }
+
+@media screen and (max-width: 420px) {
+  main {
+    width: 90%;
+  }
+
+  main.page {
+    width: 80%;
+  }
+
+  section.products {
+    justify-content: center;
+  }
+
+  main.home section,
+  main div.studio,
+  main.page {
+    padding: 1.5em;
+  }
+  main.home section h2 {
+    margin: -0.95em -0.95em 1.5em -0.95em;
+    padding: 2.5em 1.8em 1.3em 1.8em;
+  }
+}
