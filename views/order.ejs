@@ -27,15 +27,15 @@
             <input type="hidden" id="userid" name="userid" value="<%= userid %>">
             <fieldset>
                 <legend>Wie komt de bestelling ophalen?</legend>
-                <label for="voornaam">Voornaam:</label><br>
-                <input type="text" id="voornaam" name="voornaam" required <% if(userdata && userdata.voornaam) {%> value="<%= userdata.voornaam %>"<%}%>><br><br>
-                <label for="achternaam">Achternaam:</label><br>
+                <label for="voornaam">Voornaam:</label>
+                <input type="text" id="voornaam" name="voornaam" required <% if(userdata && userdata.voornaam) {%> value="<%= userdata.voornaam %>"<%}%>>
+                <label for="achternaam">Achternaam:</label>
                 <input type="text" id="achternaam" name="achternaam" required <% if(userdata && userdata.achternaam) {%> value="<%= userdata.achternaam %>"<%}%>>
             </fieldset>        
             <fieldset>
                 <legend>Waar kunnen we je bereiken?</legend>
-                <label for="email">E-mailadres:</label><br>
-                <input type="email" id="email" name="email" required <% if(userdata && userdata.email) {%> value="<%= userdata.email %>"<%}%>><br>
+                <label for="email">E-mailadres:</label>
+                <input type="email" id="email" name="email" required <% if(userdata && userdata.email) {%> value="<%= userdata.email %>"<%}%>>
                 <p>Wanneer je een NERD shirt besteld ontvang je op dit e-mailadres een afhaalbevestiging.</p>
                 <input type="submit" value="Bestelling plaatsen">
             </fieldset>
