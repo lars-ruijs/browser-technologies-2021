@@ -50,8 +50,8 @@ colors.forEach(element => {
     });
 });
 
-// If text input field for shirt text is present > Add event listener
-if (shirtTextInput) {
+if(window.location.pathname.includes("/studio/")) {
+    console.log("STUDIO");
     shirtTextInput.addEventListener("input", (event) => {
         const text = event.target.value;
         
@@ -59,7 +59,16 @@ if (shirtTextInput) {
         const shirtText = document.querySelector("div.studio div.preview p");
         shirtText.textContent = text;
     });
+
+    // loginForm.addEventListener('invalid', () => {
+    //     if(loginForm.value === '') {
+    //         loginForm.setCustomValidity("Vul een logincode in");
+    //     } else {
+    //         loginForm.setCustomValidity("Inlogcodes bestaan uit minstens 8 karakters.");
+    //     }
+    //   });
 }
+
 
 // If Clipboard API is available and codeInput field is present > Add event listener
 // Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
@@ -96,22 +105,17 @@ if (window.localStorage) {
         // Change studio route (include userID from localStorage)
         const studioRoute = startDesignButton.href.split("/");  
         startDesignButton.href = `/studio/${localStorage.code}/${studioRoute[studioRoute.length-1]}`;
+
+        const createBox = document.querySelector("main.home section:first-of-type");
+        const a = document.createElement("a");
+        a.href = `/order/${localStorage.code}`;
+        a.classList.add("secundary");
+        a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>Bekijk winkelwagen';
+
+        createBox.appendChild(a);
         
-        // Change loginbox title
-        const loginBoxTitle = document.querySelector("main.home section:nth-of-type(2) h2");
-        loginBoxTitle.textContent = "Welkom terug!";
-
-        // Don't display the login label
-        const loginLabel = document.querySelector("main.home form label[for='logincode']");
-        loginLabel.style.display = "none";
-
-        // Set the login form input value and hide input
-        loginForm.value = localStorage.code;
-        loginForm.type = "hidden";
-
-        // Change text inside login button
-        const loginButton = document.querySelector("main.home form input[type='submit']");
-        loginButton.value = "Naar dashboard";
+        const loginBox = document.querySelector("main.home section:nth-of-type(2)");
+        loginBox.remove();
     }
 
     // If logout button is present & code stored inside localStorage > Add event listener
@@ -122,3 +126,12 @@ if (window.localStorage) {
         });
     }
 }
+
+
+// loginForm.addEventListener('invalid', () => {
+//     if(loginForm.value === '') {
+//         loginForm.setCustomValidity("Vul een logincode in");
+//     } else {
+//         loginForm.setCustomValidity("Inlogcodes bestaan uit minstens 8 karakters.");
+//     }
+//   });

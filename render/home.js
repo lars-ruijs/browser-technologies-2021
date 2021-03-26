@@ -28,7 +28,7 @@ export function dashboardRoute(req, res) {
         if(ids.length === 1) {
            const index = data.map(user => user.userid).indexOf(logincode);
            const userData = data[index];
-           res.render("dashboard", { title: "Dashboard", userData, shirtid: uniqid() });
+           res.redirect(`/order/${logincode}`);
         }
         // If id does not exist > render error page
         else {
