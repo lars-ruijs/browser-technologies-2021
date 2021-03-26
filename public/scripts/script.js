@@ -1,13 +1,19 @@
+// Select the fit and color options
 const fit = document.querySelectorAll("input[name='pasvorm']");
 const colors = document.querySelectorAll("input[name='kleur']");
+
+// Select the input field for text displayed on shirt
 const shirtTextInput = document.querySelector("input[name='shirttekst']");
+
+// Select the product image
 const productImg = document.querySelector("div.studio img");
+
+// Select the code field (used for coppying text)
 const codeInput = document.querySelector("input#code");
 
-
+// Select the login form, start button and logout button
 const loginForm = document.querySelector("input[name='logincode']");
 const startDesignButton = document.querySelector("main.home a.primary");
-
 const logoutButton = document.querySelector("main.page a.secundary#logout");
 
 // Add event listener to all fit options
@@ -45,7 +51,7 @@ colors.forEach(element => {
 });
 
 // If text input field for shirt text is present > Add event listener
-if(shirtTextInput) {
+if (shirtTextInput) {
     shirtTextInput.addEventListener("input", (event) => {
         const text = event.target.value;
         
@@ -55,34 +61,38 @@ if(shirtTextInput) {
     });
 }
 
-// If codeInput field is present > Add event listener
-if(codeInput) {
-    codeInput.addEventListener("click", () => {
-      // Select text inside field > copy to clipboard 
-      codeInput.select();
-      document.execCommand("copy");
-      const codeSuccess = document.querySelectorAll("div.code p");
-
-      // If no success message present > Show "copied successful" text
-      if(codeSuccess.length === 0) {
-        const codeContainer = document.querySelector("div.code");
-        const p = document.createElement("p");
-        p.textContent = "De code is succesvol gekopieerd naar je klembord!";
-        codeContainer.appendChild(p);
-      }
+// If Clipboard API is available and codeInput field is present > Add event listener
+// Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
+if (navigator.clipboard && codeInput) {
+    codeInput.addEventListener("click", async () => {
+    try {
+        await navigator.clipboard.writeText(codeInput.value);
+        const codeSuccess = document.querySelectorAll("div.code p");
+        
+        // If no success message present > Show "copied successful" text
+        if (codeSuccess.length === 0) {
+            const codeContainer = document.querySelector("div.code");
+            const p = document.createElement("p");
+            p.textContent = "De code is succesvol gekopieerd naar je klembord!";
+            codeContainer.appendChild(p);
+          }
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
     });
 }
 
 // If localStorage is available
+// WebStorage API documentation: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 if (window.localStorage) {
 
     // If (hidden) codeInput field is present > set value to localStorage item "code"
-    if(codeInput) {
+    if (codeInput) {
         localStorage.code = codeInput.value;
     }
 
     // If code inside localStorage and loginform present
-    if(localStorage.code && localStorage.code.length === 8 && loginForm && startDesignButton) {
+    if (localStorage.code && localStorage.code.length === 8 && loginForm && startDesignButton) {
         // Change studio route (include userID from localStorage)
         const studioRoute = startDesignButton.href.split("/");  
         startDesignButton.href = `/studio/${localStorage.code}/${studioRoute[studioRoute.length-1]}`;
@@ -105,7 +115,7 @@ if (window.localStorage) {
     }
 
     // If logout button is present & code stored inside localStorage > Add event listener
-    if(logoutButton && localStorage.code && localStorage.code.length === 8) {
+    if (logoutButton && localStorage.code && localStorage.code.length === 8) {
         logoutButton.addEventListener("click", () => {
             // Remove code
             localStorage.removeItem('code');
