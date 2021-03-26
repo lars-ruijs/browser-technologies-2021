@@ -42,6 +42,8 @@ export function shirtCreationRoute(req, res) {
         const kleur = req.body.kleur;
         const tekst = req.body.shirttekst;
 
+        let newUser = true;
+
         // Get the data file
         const dataFile = fs.readFileSync("./data/data.json");
         // Parse JSON and convert to an array
@@ -72,6 +74,7 @@ export function shirtCreationRoute(req, res) {
         else if (ids.length > 0) {
             const index = data.map(user => user.userid).indexOf(userId);
             const savedShirts = data[index].savedShirts.map(shirt => shirt.shirtid).filter(id => id === shirtId);
+            newUser = false;
 
             // If shirtCode already exists for this user > edit the shirt.
             if(savedShirts.length > 0) {
@@ -96,7 +99,7 @@ export function shirtCreationRoute(req, res) {
          // Convert data back to JSON and write the file
          const whatToWrite = JSON.stringify(data, null, 2);
          fs.writeFile("./data/data.json", whatToWrite, (err) => { if(err){throw err;} console.log("succes");});
-         res.render("shirtcreated", { title: "T-shirt opgeslagen!", userid: userId, shirtid: uniqid()});
+         res.render("shirtcreated", { title: "T-shirt opgeslagen!", userid: userId, shirtid: uniqid(), newuser: newUser});
     }
     else {
         res.render("404", { title: "T-shirt kon niet worden opgeslagen", errorTitle: "Oeps, je NERD shirt kon niet worden opgeslagen", errorDescription: "Niet alle vereiste gegevens zijn ingevuld. Ga terug naar de vorige pagina en zorg ervoor dat alle vereiste velden zijn ingevuld.", errorLink: null, errorLinkDescription: null });   

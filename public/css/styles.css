@@ -365,7 +365,7 @@ main.page section.confirm h2 {
   color: #0d9c00;
 }
 
-main.page section.confirm svg {
+main.page section.confirm svg:not(a.primary svg, a.secundary svg) {
   display: block;
   fill: #0d9c00;
   margin: 0 auto;
