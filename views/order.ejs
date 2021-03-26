@@ -8,7 +8,7 @@
         <section class="products">
             <% shirts.forEach(element => { %>
                 <div class="product">
-                    <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
+                    <img src="<%= `/img/shirt${element.pasvorm}${element.kleur}.png` %>" alt="<%= `afbeelding van een ${element.kleur} shirt voor een ${element.pasvorm}` %>">
                     <p>€ 24,99</p>
                     <p><%= element.pasvorm %> • <%= element.maat %></p>
                     <p><span class="<%= element.kleur %>"></span> <%= element.kleur %></p>

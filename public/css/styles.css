@@ -1,4 +1,5 @@
 body {
+  hyphens: auto;
   background: #c9d6ff; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     145deg,
@@ -174,7 +175,7 @@ main.page form {
 form fieldset {
   border: none;
   padding: 0;
-  margin: 0;
+  margin: 1.5em 0;
 }
 
 form fieldset legend {
@@ -189,6 +190,10 @@ form input {
 form label {
   font-weight: bold;
   margin: 1em 0 0.8em 0;
+}
+
+form label:hover {
+  cursor: pointer;
 }
 
 form input[type="text"],
@@ -260,7 +265,6 @@ div.studio div.preview img {
 }
 
 div.studio div.preview p {
-  hyphens: auto;
   width: 6em;
   max-height: 9.5em;
   overflow: hidden;
@@ -282,11 +286,6 @@ div.studio fieldset input[type="radio"]:checked + label,
 div.studio fieldset input[type="radio"]:focus + label {
   border: 3px solid #6259f5;
   color: #6259f5;
-}
-
-div.studio fieldset {
-  padding: 0;
-  margin: 1.5em 0;
 }
 
 /* SUPPORT */
@@ -316,6 +315,11 @@ div.product p:nth-of-type(3) span {
   height: 1.2em;
   border-radius: 99em;
   margin: 0 0.5em 0 0;
+}
+
+label[for="zwart"] span,
+div.product span.zwart {
+  background-color: #020202;
 }
 
 label[for="rood"] span,
@@ -349,23 +353,6 @@ label[for="shirttekst"] span {
 }
 label[for="shirttekst"] span::before {
   content: " - ";
-}
-
-/* https://css-tricks.com/almanac/properties/u/user-select/ */
-main.page div.code {
-  background-color: #e2e0ff;
-  padding: 0.5em 2em;
-  width: 5em;
-  -moz-user-select: all;
-  -khtml-user-select: all;
-  -webkit-user-select: all;
-  -ms-user-select: all;
-  user-select: all;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.2em;
-  border-radius: 99em;
-  margin: 2em 0 1.5em 0;
-  cursor: text;
 }
 
 main.page div.confirm {
@@ -438,6 +425,25 @@ main.page.order p.totalprice {
   font-weight: bold;
   font-size: 1.1em;
   margin: 3em 0 0 0;
+}
+
+input#code {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #e2e0ff;
+  padding: 0.5em 2em;
+  border-radius: 99em;
+  margin: 1em 0 1.5em 0;
+  border: none;
+  width: 5em;
+  height: 4em;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2em;
+}
+
+input#code:focus {
+  outline: none;
 }
 
 main.page.order p:nth-of-type(3) {

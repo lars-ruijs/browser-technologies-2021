@@ -22,6 +22,8 @@
             </fieldset> 
             <fieldset>
                 <legend>Welke kleur krijgt jouw NERD shirt?</legend>
+                <input type="radio" id="zwart" name="kleur" value="zwart" required <% if(shirtData.length > 0 && shirtData[0].kleur === "zwart") {%> <%= "checked" %> <%}%>>
+                <label for="zwart" class="kleur"><span></span> Zwart</label><br>
                 <input type="radio" id="rood" name="kleur" value="rood" required <% if(shirtData.length > 0 && shirtData[0].kleur === "rood") {%> <%= "checked" %> <%}%>>
                 <label for="rood" class="kleur"><span></span> Rood</label><br>
                 <input type="radio" id="groen" name="kleur" value="groen" required <% if(shirtData.length > 0 && shirtData[0].kleur === "groen") {%> <%= "checked" %> <%}%>>
