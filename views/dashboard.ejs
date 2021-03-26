@@ -1,9 +1,10 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
 <main class="page">
+    <input id="code" type="hidden" value="<%=userData.userid%>">
     <h2>Welkom<%= userData.voornaam ? " "+userData.voornaam : "" %>!</h2>
     <p>Op deze pagina vind je een overzicht van je gemaakte NERD shirts. Als een shirt nog niet is besteld, kun je het shirt nog aanpassen.</p>
-    <a class="secundary" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 9v-4l8 7-8 7v-4h-8v-6h8zm-16-7v20h14v-2h-12v-16h12v-2h-14z"/></svg>Uitloggen</a>
+    <a class="secundary" id="logout" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 9v-4l8 7-8 7v-4h-8v-6h8zm-16-7v20h14v-2h-12v-16h12v-2h-14z"/></svg>Uitloggen</a>
        
     <% if(userData.savedShirts.length > 0) { %> 
             <h3>Opgeslagen NERD shirts:</h3>
