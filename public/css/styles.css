@@ -158,6 +158,7 @@ a.remove:focus {
   background-color: #fd0;
   box-shadow: 0 3px 0 #000000;
   outline: none;
+  color: #000000;
 }
 
 a.remove.edit {
@@ -309,7 +310,7 @@ label.kleur {
 }
 
 label.kleur span,
-div.product p:nth-of-type(3) span {
+article.product p:nth-of-type(3) span {
   display: inline-block;
   width: 1.2em;
   height: 1.2em;
@@ -318,32 +319,32 @@ div.product p:nth-of-type(3) span {
 }
 
 label[for="zwart"] span,
-div.product span.zwart {
+article.product span.zwart {
   background-color: #020202;
 }
 
 label[for="rood"] span,
-div.product span.rood {
+article.product span.rood {
   background-color: #a60628;
 }
 
 label[for="groen"] span,
-div.product span.groen {
+article.product span.groen {
   background-color: #0f777c;
 }
 
 label[for="blauw"] span,
-div.product span.blauw {
+article.product span.blauw {
   background-color: #134d8d;
 }
 
 label[for="oranje"] span,
-div.product span.oranje {
+article.product span.oranje {
   background-color: #e46c07;
 }
 
 label[for="roze"] span,
-div.product span.roze {
+article.product span.roze {
   background-color: #e3717f;
 }
 
@@ -355,22 +356,22 @@ label[for="shirttekst"] span::before {
   content: " - ";
 }
 
-main.page div.confirm {
+main.page section.confirm {
   text-align: center;
 }
 
-main.page div.confirm h2 {
+main.page section.confirm h2 {
   color: #0d9c00;
 }
 
-main.page div.confirm svg {
+main.page section.confirm svg {
   display: block;
   fill: #0d9c00;
   margin: 0 auto;
   margin-bottom: 2em;
 }
 
-main.page div.confirm {
+main.page section.confirm {
   margin: 4em 0;
 }
 
@@ -388,7 +389,7 @@ main.page section.products {
   display: block;
 }
 
-main.page div.product {
+main.page article.product {
   box-shadow: 0px 4px 10px #00000029;
   border-radius: 0.4em;
   padding: 2em 3em;
@@ -396,28 +397,28 @@ main.page div.product {
   margin: 0 1.5em 1.5em 0;
 }
 
-main.page div.product img {
+main.page article.product img {
   width: 5em;
 }
 
-main.page div.product p:first-of-type {
+main.page article.product p:first-of-type {
   font-weight: bold;
   font-size: 1.1em;
   text-transform: capitalize;
 }
 
-main.page div.product p:nth-of-type(2),
-main.page div.product p:nth-of-type(3) {
+main.page article.product p:nth-of-type(2),
+main.page article.product p:nth-of-type(3) {
   text-transform: capitalize;
   margin: 0 0 0.3em 0;
 }
 
 /* SUPPORT */
-main.page div.product p:nth-of-type(3) {
+main.page article.product p:nth-of-type(3) {
   display: inline-block;
 }
 
-main.page div.product p:nth-of-type(4) span {
+main.page article.product p:nth-of-type(4) span {
   font-weight: bold;
 }
 
@@ -476,7 +477,7 @@ main.page.order p:nth-of-type(3) {
   label.kleur {
     display: inline-flex;
   }
-  main.page div.product p:nth-of-type(3) {
+  main.page article.product p:nth-of-type(3) {
     display: inline-flex;
   }
 }

@@ -10,7 +10,7 @@
             <h3>Opgeslagen NERD shirts:</h3>
             <section class="products">
                 <% userData.savedShirts.forEach(element => { %>
-                    <div class="product">
+                    <article class="product">
                         <img src="<%= `/img/shirt${element.pasvorm}${element.kleur}.png` %>" alt="<%= `afbeelding van een ${element.kleur} shirt voor een ${element.pasvorm}` %>">
                         <% if(element.pasvorm.includes("man")){ %>
                             <p><%=`${element.pasvorm}nen shirt`%></p>
@@ -25,28 +25,28 @@
                         <a class="primary" href="<%= `/order/${userData.userid}` %>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>Bestellen</a>
                         <a class="remove edit" href="<%= `/studio/${userData.userid}/${element.shirtid}` %> "><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.769 9.923l-12.642 12.639-7.127 1.438 1.438-7.128 12.641-12.64 5.69 5.691zm1.414-1.414l2.817-2.82-5.691-5.689-2.816 2.817 5.69 5.692z"/></svg>Aanpassen</a>
                         <a class="remove" href="<%= `/remove/${userData.userid}/${element.shirtid}?page=/dashboard` %> "><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z"/></svg>Verwijderen</a>
-                    </div>
+                        </article>
                 <% }); %> 
             </section>
         <% } %> 
         <% if(userData.orderedShirts.length > 0) { %> 
             <h3>Bestelde NERD shirts:</h3>
             <section class="products">
-            <% userData.orderedShirts.forEach(element => { %>
-                <div class="product">
-                    <img src="<%= `/img/shirt${element.pasvorm}${element.kleur}.png` %>" alt="<%= `afbeelding van een ${element.kleur} shirt voor een ${element.pasvorm}` %>">
-                    <% if(element.pasvorm.includes("man")){ %>
-                        <p><%=`${element.pasvorm}nen shirt`%></p>
-                    <%} else {%>
-                        <p><%=`${element.pasvorm}en shirt`%></p>                        
-                    <%}%>
-                    <p><%= element.maat %></p>
-                    <p><span class="<%= element.kleur %>"></span> <%= element.kleur %></p>
-                    <% if(element.tekst && element.tekst.length > 0) { %> 
-                        <p><span>Tekst:</span> <%= element.tekst %> </p>
-                    <% } %> 
-                </div>
-            <% }); %> 
+                <% userData.orderedShirts.forEach(element => { %>
+                    <article class="product">
+                        <img src="<%= `/img/shirt${element.pasvorm}${element.kleur}.png` %>" alt="<%= `afbeelding van een ${element.kleur} shirt voor een ${element.pasvorm}` %>">
+                        <% if(element.pasvorm.includes("man")){ %>
+                            <p><%=`${element.pasvorm}nen shirt`%></p>
+                        <%} else {%>
+                            <p><%=`${element.pasvorm}en shirt`%></p>                        
+                        <%}%>
+                        <p><%= element.maat %></p>
+                        <p><span class="<%= element.kleur %>"></span> <%= element.kleur %></p>
+                        <% if(element.tekst && element.tekst.length > 0) { %> 
+                            <p><span>Tekst:</span> <%= element.tekst %> </p>
+                        <% } %> 
+                    </article>
+                <% }); %> 
             </section>
         <% } %> 
         <% if(userData.orderedShirts.length === 0 && userData.savedShirts.length === 0) { %>

@@ -7,7 +7,7 @@
         <h3>In je winkelwagen (<%= shirts.length %>):</h3>
         <section class="products">
             <% shirts.forEach(element => { %>
-                <div class="product">
+                <article class="product">
                     <img src="<%= `/img/shirt${element.pasvorm}${element.kleur}.png` %>" alt="<%= `afbeelding van een ${element.kleur} shirt voor een ${element.pasvorm}` %>">
                     <p>€ 24,99</p>
                     <p><%= element.pasvorm %> • <%= element.maat %></p>
@@ -16,7 +16,7 @@
                         <p><span>Tekst:</span> <%= element.tekst %> </p>
                     <% } %> 
                     <a class="remove" href="<%= `/remove/${userid}/${element.shirtid}?page=/order/${userid}` %> "><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z"/></svg>Verwijderen</a>
-                </div>
+                </article>
             <% }); %> 
         </section>
         <p class="totalprice">Totaalbedrag: € <%= shirts.length * 24.99 %> </p>

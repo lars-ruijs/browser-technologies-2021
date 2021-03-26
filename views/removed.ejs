@@ -1,7 +1,7 @@
 <%# Include the header module (partial) %> 
 <%- include('./partials/head.ejs') %> 
 <main class="page">
-    <div class="confirm">
+    <section class="confirm">
         <svg xmlns="http://www.w3.org/2000/svg" width="7em" height="7em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z"/></svg>
         <h2>Je shirt is succesvol verwijderd</h2>
         <% if (nextStep === "/dashboard") { %> 
@@ -12,7 +12,7 @@
         <% } else { %> 
         <a class="primary" href=<%=nextStep%> >Terug naar besteloverzicht</a>
         <% } %> 
-    </div>
+    </section>
 </main>
 <%# Include the footer module (partial) %> 
 <%- include('./partials/footer.ejs') %> 
