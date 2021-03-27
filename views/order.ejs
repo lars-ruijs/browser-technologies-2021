@@ -26,7 +26,7 @@
             <% }); %> 
         </section>
         <a class="primary" href="<%= `/studio/${userid}/${newshirtid}` %> "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="currentColor"/></svg>Nog een shirt maken</a>
-        <p class="totalprice">Totaalbedrag: € <%= shirts.length * 24.99 %> </p>
+        <p class="totalprice">Totaalbedrag: € <%= (shirts.length * 24.99).toFixed(2).replace(".", ",") %> </p>
         <p>Je betaald het totaalbedrag bij het afhalen van je bestelling.</p>
         <h3>Jouw gegevens</h3>
         <p>Om je bestelling te kunnen plaatsen, hebben we wat informatie van je nodig.</p>
