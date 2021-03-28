@@ -12,9 +12,13 @@ const productImg = document.querySelector("div.studio img");
 const codeInput = document.querySelector("input#code");
 
 // Select the login form, start button and logout button
-const loginForm = document.querySelector("input[name='logincode']");
+const loginForm = document.querySelector("main.home form");
+const loginInput = document.querySelector("input[name='logincode']");
 const startDesignButton = document.querySelector("main.home a.primary");
 const logoutButton = document.querySelector("main.page a.secundary#logout");
+
+// Select the studio form
+const studioForm = document.querySelector("main div.studio form");
 
 // Select the order form
 const orderForm = document.querySelector("main.page.order form");
@@ -27,7 +31,7 @@ if(window.location.pathname.includes("/studio/")) {
         element.addEventListener("change", (event) => {
             const gender = event.target.id;
             const kleurSelect = document.querySelectorAll("input[name='kleur']:checked");
-            if (kleurSelect.length > 0) {
+            if(kleurSelect.length > 0) {
                 const shirtColor = kleurSelect[0].value;
                 productImg.src = `/img/shirt${gender}${shirtColor}.png`;
                 productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
@@ -44,7 +48,7 @@ if(window.location.pathname.includes("/studio/")) {
         element.addEventListener("change", (event) => {
             const shirtColor = event.target.id;
             const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
-            if (genderSelect.length > 0) {
+            if(genderSelect.length > 0) {
                 const gender = genderSelect[0].value;
                 productImg.src = `/img/shirt${gender}${shirtColor}.png`;
                 productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
@@ -66,59 +70,153 @@ if(window.location.pathname.includes("/studio/")) {
 
         const errorText = document.querySelector("div.studio fieldset:nth-of-type(3) p:last-of-type");
         // If too many characters are used > display error text
-        if(text.length > 72 && !errorText) {
-            const fieldSet = document.querySelector("div.studio fieldset:nth-of-type(3)");
-            const p = document.createElement("p");
-            p.textContent = "Let op! Er passen maximaal 75 tekens op het shirt.";
-            p.classList.add("errortext");
-            fieldSet.appendChild(p);
+        if(text.length > 74 && !errorText) {
+            inlineError(shirtTextInput, "Let op! Er passen maximaal 75 tekens op het shirt.");
         }
         else if(text.length < 75 && errorText) {
-            errorText.remove();
+            removeError(shirtTextInput, errorText);
+        }
+    });
+
+    studioForm.addEventListener("submit", function(e){
+        const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
+        const colorSelect = document.querySelectorAll("input[name='kleur']:checked");
+        const sizeSelect = document.querySelectorAll("input[name='maat']:checked");
+
+        if(genderSelect.length == 0 || colorSelect.length == 0 || sizeSelect.length == 0){
+            createError(studioForm, "Shirt kon niet worden opgeslagen. Zorg ervoor dat je een Pasvorm (m/v), Kleur en Maat kiest!");
+            e.preventDefault();
+        } 
+        else {
+            return true;
+        }
+    });
+}
+
+if(orderForm) {
+    const firstName = document.querySelector("input[name='voornaam']");
+    const lastName = document.querySelector("input[name='achternaam']");
+    const email = document.querySelector("input[name='email']");
+
+    firstName.addEventListener("blur", () => {
+        const errorText = document.querySelector("input[name='voornaam'] + p.errortext");
+        // If firstname is empty
+        if(firstName.value == '' && !errorText) {
+            inlineError(firstName, "Vul een voornaam in.");
+        }
+        // Remove errorText if no longer needed
+        else if(errorText && firstName.value != '') {
+            removeError(firstName, errorText);
+        }
+    });
+
+    lastName.addEventListener("blur", () => {
+        const errorText = document.querySelector("input[name='achternaam'] + p.errortext");
+        // If lastname is empty
+        if(lastName.value == '' && !errorText) {
+            inlineError(lastName, "Vul een achternaam in.");
+        }
+        // Remove errorText if no longer needed
+        else if(errorText && lastName.value != '') {
+            removeError(lastName, errorText);
+        }
+    });
+
+    email.addEventListener("blur", () => {
+        const errorText = document.querySelector("input[name='email'] + p.errortext");
+        // If email is empty or invalid
+        if(email.value == '' && !errorText || !email.value.includes("@") && !errorText || !email.value.includes(".") && !errorText) {
+            inlineError(email, "Vul een geldig e-mailadres in.");
+        }
+        // Remove errorText if no longer needed
+        else if(errorText && email.value != '' && email.value.includes("@") && email.value.includes(".")) {
+            removeError(email, errorText);
+        }
+    });
+
+    firstName.addEventListener('input', () => {
+        const errorText = document.querySelector("input[name='voornaam'] + p.errortext");
+        if(errorText) {
+            removeError(firstName, errorText);
+        }
+      });
+
+      lastName.addEventListener('input', () => {
+        const errorText = document.querySelector("input[name='achternaam'] + p.errortext");
+        if(errorText) {
+            removeError(lastName, errorText);
+        }
+      });
+
+      email.addEventListener('input', (event) => {
+        const errorText = document.querySelector("input[name='email'] + p.errortext");
+        if(errorText && event.target.value.includes("@") && event.target.value.includes(".")) {
+            removeError(email, errorText);
+        }
+      });
+
+    orderForm.addEventListener("submit", function(e){
+        if(firstName.value.length == 0 || lastName.value.length == 0 || email.value.length == 0 || !email.value.includes("@") || !email.value.includes(".")){
+            createError(orderForm, "Kan bestelling niet plaatsen. Zorg ervoor dat je een voor- en achternaam invult én dat je een geldig e-mailadres opgeeft.");
+            e.preventDefault();
+        } 
+        else {
+            return true;
         }
     });
 }
 
 // If home login form is present > Add blur event listener
-// https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
+// InsertBefore source: https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
 if(loginForm) {
-    loginForm.addEventListener("blur", () => {
+    loginInput.addEventListener("blur", () => {
         
         const errorText = document.querySelector("main.home form p:last-of-type");
 
         // If loginfield is empty
-        if(loginForm.value == '' && !errorText) {
-            const p = document.createElement("p");
-            p.textContent = "Je logincode mag niet leeg zijn.";
-            p.classList.add("errortext");
-            loginForm.style.border = "2px solid #d4351c";
-            loginForm.parentNode.insertBefore(p, loginForm.nextSibling);
+        if(loginInput.value == '' && !errorText) {
+            inlineError(loginInput, "Je logincode mag niet leeg zijn.");
         }
         // If code is too short or too long
-        else if(loginForm.value.length < 8 && !errorText || loginForm.value.length > 8 && !errorText) {
-            const p = document.createElement("p");
-            p.textContent = "Je logincode moet uit 8 karakters bestaan.";
-            p.classList.add("errortext");
-            loginForm.style.border = "2px solid #d4351c";
-            loginForm.parentNode.insertBefore(p, loginForm.nextSibling);
+        else if(loginInput.value.length < 8 && !errorText || loginInput.value.length > 8 && !errorText) {
+            inlineError(loginInput, "Je logincode moet uit 8 karakters bestaan.");
         }
         // Remove errorText if no longer needed
-        else if(errorText) {
-            loginForm.style.border = "2px solid #292929";
-            errorText.remove();
+        else if(errorText && loginInput.value.length < 8 && loginInput.value.length > 8) {
+            removeError(loginInput, errorText);
         }
     });
 
-    loginForm.addEventListener('input', () => {
-        loginForm.setCustomValidity('');
-        loginForm.checkValidity();
+    // Custom Validity in loginform
+    loginInput.addEventListener('input', () => {
+        const errorText = document.querySelector("main.home form p:last-of-type");
+        const formError = document.querySelector("main form p.formerror");
+        if(formError) {
+            formError.remove();
+        }
+        else if(errorText) {
+            removeError(loginInput, errorText);
+        }
+        loginInput.setCustomValidity('');
+        loginInput.checkValidity();
       });
 
-    loginForm.addEventListener('invalid', () => {
-        if (loginForm.value === '') {
-            loginForm.setCustomValidity("Vul een logincode in");
-        } else if (loginForm.value.length < 8 || loginForm.value.length > 8) {
-            loginForm.setCustomValidity("Inlogcodes bestaan uit minstens 8 karakters.");
+      loginInput.addEventListener('invalid', () => {
+        if(loginInput.value === '') {
+            loginInput.setCustomValidity("Vul een logincode in");
+        } 
+        else if(loginInput.value.length < 8 || loginForm.value.length > 8) {
+            loginInput.setCustomValidity("Inlogcodes bestaan uit minstens 8 karakters.");
+        }
+    });
+
+    loginForm.addEventListener("submit", function(e){
+        if(loginInput.value == '' || loginInput.value.length > 8 || loginInput.value.length < 8 || loginInput.value == 'vogeltje'){
+            createError(loginForm, "Inlogcode niet geldig. Zorg ervoor dat je een logincode invult met 8 karakters.");
+            e.preventDefault();
+        }
+        else {
+            return true;
         }
     });
 }
@@ -126,20 +224,20 @@ if(loginForm) {
 
 // If Clipboard API is available and codeInput field is present > Add event listener
 // Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
-if (navigator.clipboard && codeInput) {
+if(navigator.clipboard && codeInput) {
     codeInput.addEventListener("click", async () => {
     try {
         await navigator.clipboard.writeText(codeInput.value);
         const codeSuccess = document.querySelectorAll("div.code p");
         
         // If no success message present > Show "copied successful" text
-        if (codeSuccess.length === 0) {
+        if(codeSuccess.length === 0) {
             const codeContainer = document.querySelector("div.code");
             const p = document.createElement("p");
             p.textContent = "De code is succesvol gekopieerd naar je klembord!";
             codeContainer.appendChild(p);
           }
-    } catch (err) {
+    } catch(err) {
         console.error('Failed to copy: ', err);
     }
     });
@@ -150,12 +248,12 @@ if (navigator.clipboard && codeInput) {
 if (window.localStorage) {
 
     // If (hidden) codeInput field is present > set value to localStorage item "code"
-    if (codeInput) {
+    if(codeInput) {
         localStorage.code = codeInput.value;
     }
 
     // If code inside localStorage and loginform present
-    if (localStorage.code && localStorage.code.length === 8 && loginForm) {
+    if(localStorage.code && localStorage.code.length === 8 && loginForm) {
         // Change studio route (include userID from localStorage)
         const studioRoute = startDesignButton.href.split("/");  
         startDesignButton.href = `/studio/${localStorage.code}/${studioRoute[studioRoute.length-1]}`;
@@ -174,10 +272,34 @@ if (window.localStorage) {
     }
 
     // If logout button is present & code stored inside localStorage > Add event listener
-    if (logoutButton && localStorage.code && localStorage.code.length === 8) {
+    if(logoutButton && localStorage.code && localStorage.code.length === 8) {
         logoutButton.addEventListener("click", () => {
             // Remove code
             localStorage.removeItem('code');
         });
     }
+}
+
+function createError(node, error) {
+    const errorText = document.querySelector("main form p.formerror");
+    const message = document.createElement("p");
+    message.classList.add("formerror");
+    message.textContent = error;
+
+    if(!errorText) {
+        node.appendChild(message);
+    }
+}
+
+function inlineError(inputField, error) {
+    const p = document.createElement("p");
+    p.textContent = error;
+    p.classList.add("errortext");
+    inputField.style.border = "2px solid #d4351c";
+    inputField.parentNode.insertBefore(p, inputField.nextSibling);
+}
+
+function removeError(inputField, node) {
+    inputField.style.border = "2px solid #292929";
+    node.remove();
 }
