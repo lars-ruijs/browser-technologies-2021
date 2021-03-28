@@ -1,3 +1,7 @@
+/* /////////////// */
+/* GLOBAL STYLING */
+/* ///////////// */
+
 body {
   hyphens: auto;
   background: #c9d6ff; /* fallback for old browsers */
@@ -53,16 +57,15 @@ main.page {
   font-weight: 300;
 }
 
+/* ///////// */
+/* HOMEPAGE */
+/* //////// */
+
 main.home section {
   margin: 2em 0;
 }
 
-main.home section:first-of-type img {
-  display: block;
-  margin: 0 3em 0 0;
-  max-width: 90%;
-}
-
+/* Title inside boxes */
 main.home section h2 {
   color: #ffffff;
   background-color: #6259f5;
@@ -72,9 +75,22 @@ main.home section h2 {
   font-size: 1.6em;
 }
 
-/* SUPPORT */
+main.home section:first-of-type img {
+  max-width: 90%;
+}
+
+main.page form {
+  margin: 2em 0;
+}
+
+/* ////////// */
+/*  BUTTONS  */
+/* ///////// */
+
 a.primary,
-a.secundary {
+a.secundary,
+button,
+input[type="submit"] {
   display: inline-block;
   padding: 1em;
   text-decoration: none;
@@ -84,7 +100,9 @@ a.secundary {
   font-size: 1.1em;
 }
 
-a.primary {
+a.primary,
+button,
+input[type="submit"] {
   background-color: #6259f5;
   color: #ffffff;
   box-shadow: 0 5px 0 #4741b4;
@@ -97,14 +115,29 @@ a.secundary {
   margin: 0 1em 0 0;
 }
 
+button,
+input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 a.primary:hover,
 a.secundary:hover,
 button:hover,
 input[type="submit"]:hover {
   cursor: pointer;
   background-color: #4843b9;
+  color: #ffffff;
   box-shadow: 0 4px 0 #342f83;
   transform: translateY(0.1em);
+}
+
+a.secundary:hover {
+  border: 2px solid #4843b9;
 }
 
 a.primary:focus,
@@ -128,22 +161,18 @@ input[type="submit"]:active {
   transform: translateY(0.2em);
 }
 
-a.secundary:hover {
-  border: 2px solid #4843b9;
-  color: #ffffff;
-}
-
-a.primary svg.next {
-  margin: 0.25em 0 0 0.5em;
-}
-
 a.primary svg,
 a.secundary svg,
 a.remove svg {
   margin: 0 0.5em 0 0;
 }
 
-/* SUPPORT */
+/* SVG Icon next to primary button */
+a.primary svg.next {
+  margin: 0.25em 0 0 0.5em;
+}
+
+/* Link to remove a shirt item */
 a.remove {
   display: inline-block;
   text-decoration: none;
@@ -163,6 +192,7 @@ a.remove:focus {
   color: #000000;
 }
 
+/* Link to edit a shirt item */
 a.remove.edit {
   color: #6259f5;
 }
@@ -172,13 +202,13 @@ a.remove.edit:hover {
 }
 
 main.home a.primary,
-div.error a.primary {
+section.empty a.primary {
   margin: 1.5em 1.5em 2em 0;
 }
 
-main.page form {
-  margin: 2em 0;
-}
+/* //////////////// */
+/*  FORM ELEMENTS  */
+/* ////////////// */
 
 form fieldset {
   border: none;
@@ -227,43 +257,43 @@ form input[type="email"]:focus {
   outline: none;
 }
 
+input[type="radio"] {
+  position: absolute;
+  bottom: 0em;
+  opacity: 0;
+}
+
+/* Logincode copy field */
+input#code {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #e2e0ff;
+  padding: 0.5em 2em;
+  border-radius: 99em;
+  margin: 1em 0 1.5em 0;
+  border: none;
+  width: 5em;
+  height: 4em;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2em;
+}
+
+input#code:focus {
+  outline: none;
+}
+
+/* Error text below input */
 form p.errortext {
   color: #d4351c;
   margin-bottom: 0.7em;
 }
 
-footer {
-  background-color: rgba(255, 255, 255, 0.363);
-  padding: 1em;
-  text-align: center;
-  margin: 5em 0 0 0;
-  color: #6259f5;
-  text-transform: uppercase;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
+/* //////////////// */
+/*  DESIGN STUDIO  */
+/* ////////////// */
 
-/* SUPPORT */
-button,
-input[type="submit"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  display: inline-block;
-  background-color: #6259f5;
-  color: #ffffff;
-  padding: 1em;
-  text-decoration: none;
-  font-weight: bold;
-  margin: 1em 0;
-  border-radius: 0.3em;
-  box-shadow: 0 5px 0 #4741b4;
-  border: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 1.1em;
-}
-
+/* Preview/product image */
 div.studio div.preview {
   position: relative;
   text-align: center;
@@ -277,6 +307,7 @@ div.studio div.preview img {
   max-width: 100%;
 }
 
+/* Preview text on shirt */
 div.studio div.preview p {
   width: 6em;
   max-height: 9.5em;
@@ -289,21 +320,10 @@ div.studio div.preview p {
   left: 32%;
 }
 
-input[type="radio"] {
-  position: absolute;
-  bottom: 0em;
-  opacity: 0;
-}
-
 div.studio fieldset input[type="radio"]:checked + label,
-div.studio fieldset input[type="radio"]:focus + label {
+div.studio input[type="radio"]:focus + label {
   border: 3px solid #6259f5;
   color: #6259f5;
-}
-
-/* SUPPORT */
-div.studio fieldset {
-  display: block;
 }
 
 div.studio fieldset label.option,
@@ -316,11 +336,11 @@ div.studio fieldset label.kleur {
   border-radius: 0.3em;
 }
 
-/* SUPPORT */
 label.kleur {
   display: inline-block;
 }
 
+/* Color indicator */
 label.kleur span,
 article.product p:nth-of-type(3) span {
   display: inline-block;
@@ -360,16 +380,24 @@ article.product span.roze {
   background-color: #e3717f;
 }
 
+/* Optional label */
 label[for="shirttekst"] span {
   font-weight: normal;
   color: #6e6e6e;
 }
+
 label[for="shirttekst"] span::before {
   content: " - ";
 }
 
+/* ////////////// */
+/*  OTHER PAGES  */
+/* //////////// */
+
+/* Confirm page */
 main.page section.confirm {
   text-align: center;
+  margin: 4em 0;
 }
 
 main.page section.confirm h2 {
@@ -378,26 +406,23 @@ main.page section.confirm h2 {
 
 main.page section.confirm svg:not(a.primary svg, a.secundary svg) {
   display: block;
-  fill: #0d9c00;
   margin: 0 auto;
   margin-bottom: 2em;
 }
 
-main.page section.confirm {
-  margin: 4em 0;
-}
-
-main.page div.error {
+/* Empty shopping cart section */
+main.page section.empty {
   margin: 3em 0;
   text-align: center;
   fill: #6259f5;
 }
 
-/* SUPPORT */
+/* Section with all ordered products */
 main.page section.products {
   display: block;
 }
 
+/* One individual product */
 main.page article.product {
   box-shadow: 0px 4px 10px #00000029;
   border-radius: 0.4em;
@@ -410,6 +435,7 @@ main.page article.product img {
   width: 5em;
 }
 
+/* Name of product */
 main.page article.product p:first-of-type {
   font-weight: bold;
   font-size: 1.1em;
@@ -422,50 +448,53 @@ main.page article.product p:nth-of-type(3) {
   margin: 0 0 0.3em 0;
 }
 
-/* SUPPORT */
 main.page article.product p:nth-of-type(3) {
   display: inline-block;
 }
 
+/* Text printed on shirt */
 main.page article.product p:nth-of-type(4) span {
   font-weight: bold;
 }
 
+/* Grand total */
 main.page.order p.totalprice {
   font-weight: bold;
   font-size: 1.1em;
   margin: 3em 0 0 0;
 }
 
-input#code {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: #e2e0ff;
-  padding: 0.5em 2em;
-  border-radius: 99em;
-  margin: 1em 0 1.5em 0;
-  border: none;
-  width: 5em;
-  height: 4em;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.2em;
-}
-
-input#code:focus {
-  outline: none;
-}
-
 main.page.order p:nth-of-type(3) {
   margin: 0.5em 0 3.5em 0;
 }
 
+/* ///////// */
+/*  FOOTER  */
+/* /////// */
+
+footer {
+  background-color: rgba(255, 255, 255, 0.363);
+  padding: 1em;
+  text-align: center;
+  margin: 5em 0 0 0;
+  color: #6259f5;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* ///////////////////////// */
+/*   @supports FLEX-layout  */
+/* /////////////////////// */
+
 @supports (display: flex) {
+  /* Radio inputs inside studio fieldsets */
   div.studio fieldset:not(fieldset:nth-of-type(3)) {
     position: relative;
     display: flex;
     flex-wrap: wrap;
   }
+  /* Products inside shopping cart */
   main.page section.products {
     display: flex;
     flex-wrap: wrap;
@@ -473,25 +502,32 @@ main.page.order p:nth-of-type(3) {
   }
 }
 
+/* //////////////////////////////// */
+/*   @supports inline FLEX-layout  */
+/* ////////////////////////////// */
+
 @supports (display: inline-flex) {
+  /* Buttons > used for aligning the SVGs */
   a.primary,
-  a.secundary {
-    display: inline-flex;
-    vertical-align: middle;
-  }
+  a.secundary,
   a.remove {
     display: inline-flex;
     vertical-align: middle;
   }
-  label.kleur {
-    display: inline-flex;
-  }
+
+  /* Color dots next to color name */
+  label.kleur,
   main.page article.product p:nth-of-type(3) {
     display: inline-flex;
   }
 }
 
+/* ///////////////// */
+/*  @supports grid  */
+/* //////////////// */
+
 @supports (display: grid) {
+  /* First section on home page */
   main.home section:first-of-type {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -502,6 +538,10 @@ main.page.order p:nth-of-type(3) {
     grid-column: 1 / span 2;
   }
 }
+
+/* //////////////////////////// */
+/*  @media for smaller screens  */
+/* //////////////////////////// */
 
 @media screen and (max-width: 420px) {
   main {
