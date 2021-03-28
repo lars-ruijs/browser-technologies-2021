@@ -2,7 +2,7 @@
 <%- include('./partials/head.ejs') %> 
 <main class="page">
     <section class="confirm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="7em" height="7em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="7em" height="7em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#0d9c00" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z"/></svg>
         <h2>Shirt succesvol opgeslagen in je account!</h2>
         <% if(!newuser) { %>
             <a class="secundary" href="<%= `/studio/${userid}/${shirtid}` %> "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" fill="currentColor"/></svg>Nog een shirt maken?</a>

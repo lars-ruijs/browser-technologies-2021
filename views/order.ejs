@@ -48,7 +48,7 @@
             </fieldset>
         </form>
     <% } else if(shirts.length == 0 && userdata.orderedShirts.length > 0) { %> 
-        <div class="error">
+        <section class="empty">
             <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.975 8l.025-.5c0-.517-.067-1.018-.181-1.5h5.993l-.564 2h-5.273zm-2.475 10c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm11.305-15l-3.432 12h-10.428l-.455-1.083c-.323.049-.653.083-.99.083-.407 0-.805-.042-1.191-.114l1.306 3.114h13.239l3.474-12h1.929l.743-2h-4.195zm-6.305 15c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-4.5-10.5c0 2.485-2.017 4.5-4.5 4.5s-4.5-2.015-4.5-4.5 2.017-4.5 4.5-4.5 4.5 2.015 4.5 4.5zm-3.086-2.122l-1.414 1.414-1.414-1.414-.707.707 1.414 1.415-1.414 1.414.707.708 1.414-1.415 1.414 1.414.708-.708-1.414-1.413 1.414-1.414-.708-.708z"/></svg>
             <h3>Er zijn geen shirts meer in je account opgeslagen, <%= userdata.voornaam %>.</h3>
             <p>Je winkelwagen is dus leeg. Wordt het tijd om iets te bestellen?</p>
@@ -56,7 +56,7 @@
                 <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
               </svg></a>
             <a class="secundary" id="logout" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 9v-4l8 7-8 7v-4h-8v-6h8zm-16-7v20h14v-2h-12v-16h12v-2h-14z"/></svg>Uitloggen</a>
-        </div>
+        </section>
         <h3>Eerder bestelde NERD shirts:</h3>
         <p>Gelukkig heb je al wel eerder eens NERD shirts ontworpen. Hieronder zie je je eerdere creaties terug.</p>
             <section class="products">
@@ -77,7 +77,7 @@
                 <% }); %> 
             </section>
     <% } else { %> 
-        <div class="error">
+        <section class="empty">
             <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.975 8l.025-.5c0-.517-.067-1.018-.181-1.5h5.993l-.564 2h-5.273zm-2.475 10c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm11.305-15l-3.432 12h-10.428l-.455-1.083c-.323.049-.653.083-.99.083-.407 0-.805-.042-1.191-.114l1.306 3.114h13.239l3.474-12h1.929l.743-2h-4.195zm-6.305 15c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-4.5-10.5c0 2.485-2.017 4.5-4.5 4.5s-4.5-2.015-4.5-4.5 2.017-4.5 4.5-4.5 4.5 2.015 4.5 4.5zm-3.086-2.122l-1.414 1.414-1.414-1.414-.707.707 1.414 1.415-1.414 1.414.707.708 1.414-1.415 1.414 1.414.708-.708-1.414-1.413 1.414-1.414-.708-.708z"/></svg>
             <h3>Er zijn geen shirts meer in je account opgeslagen!</h3>
             <p>Je winkelwagen is dus leeg. Wordt het tijd om iets te bestellen?</p>
@@ -85,7 +85,7 @@
                 <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
               </svg></a>
             <a class="secundary" id="logout" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 9v-4l8 7-8 7v-4h-8v-6h8zm-16-7v20h14v-2h-12v-16h12v-2h-14z"/></svg>Uitloggen</a>
-        </div>
+            </section>
     <% } %> 
 </main>
 <%# Include the footer module (partial) %> 

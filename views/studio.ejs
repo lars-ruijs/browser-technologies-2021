@@ -8,7 +8,7 @@
             <% } else { %> 
             <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
             <% } %> 
-            <p></p>
+            <p><% if(shirtData.length > 0 && shirtData[0].tekst.length > 0) {%> <%= shirtData[0].tekst %> <%}%></p>
         </div>
         <form action="/createshirt" method="POST">
             <input type="hidden" id="userid" name="userid" value="<%= userid %>">

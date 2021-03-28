@@ -80,6 +80,7 @@ if(window.location.pathname.includes("/studio/")) {
 }
 
 // If home login form is present > Add blur event listener
+// https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
 if(loginForm) {
     loginForm.addEventListener("blur", () => {
         
@@ -108,10 +109,15 @@ if(loginForm) {
         }
     });
 
+    loginForm.addEventListener('input', () => {
+        loginForm.setCustomValidity('');
+        loginForm.checkValidity();
+      });
+
     loginForm.addEventListener('invalid', () => {
         if (loginForm.value === '') {
             loginForm.setCustomValidity("Vul een logincode in");
-        } else {
+        } else if (loginForm.value.length < 8 || loginForm.value.length > 8) {
             loginForm.setCustomValidity("Inlogcodes bestaan uit minstens 8 karakters.");
         }
     });
