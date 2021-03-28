@@ -289,7 +289,7 @@ form p.errortext {
   margin-bottom: 0.7em;
 }
 
-/* Error text below input */
+/* Error text below submit input */
 form p.formerror {
   padding: 1em;
   background-color: #d4351c;

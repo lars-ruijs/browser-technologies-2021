@@ -5,20 +5,18 @@ const colors = document.querySelectorAll("input[name='kleur']");
 // Select the input field for text displayed on shirt
 const shirtTextInput = document.querySelector("input[name='shirttekst']");
 
+// Select the studio form
+const studioForm = document.querySelector("main div.studio form");
+
 // Select the product image
 const productImg = document.querySelector("div.studio img");
 
 // Select the code field (used for coppying text)
 const codeInput = document.querySelector("input#code");
 
-// Select the login form, start button and logout button
+// Select the login form and logout button
 const loginForm = document.querySelector("main.home form");
-const loginInput = document.querySelector("input[name='logincode']");
-const startDesignButton = document.querySelector("main.home a.primary");
 const logoutButton = document.querySelector("main.page a.secundary#logout");
-
-// Select the studio form
-const studioForm = document.querySelector("main div.studio form");
 
 // Select the order form
 const orderForm = document.querySelector("main.page.order form");
@@ -27,8 +25,8 @@ const orderForm = document.querySelector("main.page.order form");
 if(window.location.pathname.includes("/studio/")) {
 
     // Add event listener to all fit options
-    fit.forEach(element => {
-        element.addEventListener("change", (event) => {
+    fit.forEach(function(element) {
+        element.addEventListener("change", function(event) {
             const gender = event.target.id;
             const kleurSelect = document.querySelectorAll("input[name='kleur']:checked");
             if(kleurSelect.length > 0) {
@@ -44,8 +42,8 @@ if(window.location.pathname.includes("/studio/")) {
     });
 
     // Add event listener to all color options
-    colors.forEach(element => {
-        element.addEventListener("change", (event) => {
+    colors.forEach(function(element) {
+        element.addEventListener("change", function(event) {
             const shirtColor = event.target.id;
             const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
             if(genderSelect.length > 0) {
@@ -61,7 +59,7 @@ if(window.location.pathname.includes("/studio/")) {
     });
 
     // Add event listener to shirt text input field
-    shirtTextInput.addEventListener("input", (event) => {
+    shirtTextInput.addEventListener("input", function(event) {
         const text = event.target.value;
         
         // Update text on shirt with entered text
@@ -78,14 +76,15 @@ if(window.location.pathname.includes("/studio/")) {
         }
     });
 
-    studioForm.addEventListener("submit", function(e){
+    // Form validation: check if all required fields are filled. If not > show error message
+    studioForm.addEventListener("submit", function(event){
         const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
         const colorSelect = document.querySelectorAll("input[name='kleur']:checked");
         const sizeSelect = document.querySelectorAll("input[name='maat']:checked");
 
         if(genderSelect.length == 0 || colorSelect.length == 0 || sizeSelect.length == 0){
             createError(studioForm, "Shirt kon niet worden opgeslagen. Zorg ervoor dat je een Pasvorm (m/v), Kleur en Maat kiest!");
-            e.preventDefault();
+            event.preventDefault();
         } 
         else {
             return true;
@@ -93,12 +92,14 @@ if(window.location.pathname.includes("/studio/")) {
     });
 }
 
+// If orderForm is available
 if(orderForm) {
     const firstName = document.querySelector("input[name='voornaam']");
     const lastName = document.querySelector("input[name='achternaam']");
     const email = document.querySelector("input[name='email']");
 
-    firstName.addEventListener("blur", () => {
+    // On blur > Check if first name is valid
+    firstName.addEventListener("blur", function() {
         const errorText = document.querySelector("input[name='voornaam'] + p.errortext");
         // If firstname is empty
         if(firstName.value == '' && !errorText) {
@@ -110,7 +111,8 @@ if(orderForm) {
         }
     });
 
-    lastName.addEventListener("blur", () => {
+    // On blur > Check if last name is valid
+    lastName.addEventListener("blur", function() {
         const errorText = document.querySelector("input[name='achternaam'] + p.errortext");
         // If lastname is empty
         if(lastName.value == '' && !errorText) {
@@ -122,7 +124,8 @@ if(orderForm) {
         }
     });
 
-    email.addEventListener("blur", () => {
+    // On blur > Check if email is valid
+    email.addEventListener("blur", function() {
         const errorText = document.querySelector("input[name='email'] + p.errortext");
         // If email is empty or invalid
         if(email.value == '' && !errorText || !email.value.includes("@") && !errorText || !email.value.includes(".") && !errorText) {
@@ -134,31 +137,33 @@ if(orderForm) {
         }
     });
 
-    firstName.addEventListener('input', () => {
+    // Remove error message if present (on input) 
+    firstName.addEventListener('input', function() {
         const errorText = document.querySelector("input[name='voornaam'] + p.errortext");
         if(errorText) {
             removeError(firstName, errorText);
         }
-      });
+    });
 
-      lastName.addEventListener('input', () => {
+    lastName.addEventListener('input', function() {
         const errorText = document.querySelector("input[name='achternaam'] + p.errortext");
         if(errorText) {
             removeError(lastName, errorText);
         }
-      });
+    });
 
-      email.addEventListener('input', (event) => {
+    email.addEventListener('input', function(event) {
         const errorText = document.querySelector("input[name='email'] + p.errortext");
         if(errorText && event.target.value.includes("@") && event.target.value.includes(".")) {
             removeError(email, errorText);
         }
-      });
+    });
 
-    orderForm.addEventListener("submit", function(e){
+    // On submit check if required fields are send
+    orderForm.addEventListener("submit", function(event){
         if(firstName.value.length == 0 || lastName.value.length == 0 || email.value.length == 0 || !email.value.includes("@") || !email.value.includes(".")){
             createError(orderForm, "Kan bestelling niet plaatsen. Zorg ervoor dat je een voor- en achternaam invult én dat je een geldig e-mailadres opgeeft.");
-            e.preventDefault();
+            event.preventDefault();
         } 
         else {
             return true;
@@ -169,8 +174,10 @@ if(orderForm) {
 // If home login form is present > Add blur event listener
 // InsertBefore source: https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
 if(loginForm) {
-    loginInput.addEventListener("blur", () => {
-        
+    const loginInput = document.querySelector("input[name='logincode']");
+    
+    // On blur > validate login input field
+    loginInput.addEventListener("blur", function() {
         const errorText = document.querySelector("main.home form p:last-of-type");
 
         // If loginfield is empty
@@ -188,7 +195,7 @@ if(loginForm) {
     });
 
     // Custom Validity in loginform
-    loginInput.addEventListener('input', () => {
+    loginInput.addEventListener('input', function() {
         const errorText = document.querySelector("main.home form p:last-of-type");
         const formError = document.querySelector("main form p.formerror");
         if(formError) {
@@ -201,7 +208,7 @@ if(loginForm) {
         loginInput.checkValidity();
       });
 
-      loginInput.addEventListener('invalid', () => {
+    loginInput.addEventListener('invalid', function() {
         if(loginInput.value === '') {
             loginInput.setCustomValidity("Vul een logincode in");
         } 
@@ -210,10 +217,11 @@ if(loginForm) {
         }
     });
 
-    loginForm.addEventListener("submit", function(e){
+    // On submit > check if input is valid
+    loginForm.addEventListener("submit", function(event){
         if(loginInput.value == '' || loginInput.value.length > 8 || loginInput.value.length < 8 || loginInput.value == 'vogeltje'){
             createError(loginForm, "Inlogcode niet geldig. Zorg ervoor dat je een logincode invult met 8 karakters.");
-            e.preventDefault();
+            event.preventDefault();
         }
         else {
             return true;
@@ -225,7 +233,7 @@ if(loginForm) {
 // If Clipboard API is available and codeInput field is present > Add event listener
 // Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
 if(navigator.clipboard && codeInput) {
-    codeInput.addEventListener("click", async () => {
+    codeInput.addEventListener("click", async function() {
     try {
         await navigator.clipboard.writeText(codeInput.value);
         const codeSuccess = document.querySelectorAll("div.code p");
@@ -254,6 +262,8 @@ if (window.localStorage) {
 
     // If code inside localStorage and loginform present
     if(localStorage.code && localStorage.code.length === 8 && loginForm) {
+        const startDesignButton = document.querySelector("main.home a.primary");
+
         // Change studio route (include userID from localStorage)
         const studioRoute = startDesignButton.href.split("/");  
         startDesignButton.href = `/studio/${localStorage.code}/${studioRoute[studioRoute.length-1]}`;
@@ -273,13 +283,14 @@ if (window.localStorage) {
 
     // If logout button is present & code stored inside localStorage > Add event listener
     if(logoutButton && localStorage.code && localStorage.code.length === 8) {
-        logoutButton.addEventListener("click", () => {
+        logoutButton.addEventListener("click", function() {
             // Remove code
             localStorage.removeItem('code');
         });
     }
 }
 
+// Create form error message
 function createError(node, error) {
     const errorText = document.querySelector("main form p.formerror");
     const message = document.createElement("p");
@@ -291,6 +302,7 @@ function createError(node, error) {
     }
 }
 
+// Create inline error (below input field)
 function inlineError(inputField, error) {
     const p = document.createElement("p");
     p.textContent = error;
@@ -299,6 +311,7 @@ function inlineError(inputField, error) {
     inputField.parentNode.insertBefore(p, inputField.nextSibling);
 }
 
+// Remove error text and set input field border to normal
 function removeError(inputField, node) {
     inputField.style.border = "2px solid #292929";
     node.remove();
