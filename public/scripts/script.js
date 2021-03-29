@@ -230,23 +230,25 @@ if(window.location.pathname.includes("/studio/")) {
 
 // If Clipboard API is available and codeInput field is present > Add event listener
 // Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
-if(navigator.clipboard && codeInput) {
-    codeInput.addEventListener("click", async function() {
-    try {
-        await navigator.clipboard.writeText(codeInput.value);
-        const codeSuccess = document.querySelectorAll("div.code p");
-        
-        // If no success message present > Show "copied successful" text
-        if(codeSuccess.length === 0) {
-            const codeContainer = document.querySelector("div.code");
-            const p = document.createElement("p");
-            p.textContent = "De code is succesvol gekopieerd naar je klembord!";
-            codeContainer.appendChild(p);
-          }
-    } catch(err) {
-        console.error('Failed to copy: ', err);
+if(navigator.clipboard) {
+    if(codeInput) {
+        codeInput.addEventListener("click", async function() {
+        try {
+            await navigator.clipboard.writeText(codeInput.value);
+            const codeSuccess = document.querySelectorAll("div.code p");
+            
+            // If no success message present > Show "copied successful" text
+            if(codeSuccess.length === 0) {
+                const codeContainer = document.querySelector("div.code");
+                const p = document.createElement("p");
+                p.textContent = "De code is succesvol gekopieerd naar je klembord!";
+                codeContainer.appendChild(p);
+            }
+        } catch(err) {
+            console.error('Failed to copy: ', err);
+        }
+        });
     }
-    });
 }
 
 // If localStorage is available
