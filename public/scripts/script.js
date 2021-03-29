@@ -200,12 +200,12 @@ if(window.location.pathname.includes("/studio/")) {
             const kleurSelect = document.querySelectorAll("input[name='kleur']:checked");
             if(kleurSelect.length > 0) {
                 const shirtColor = kleurSelect[0].value;
-                productImg.src = `/img/shirt${gender}${shirtColor}.png`;
-                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
+                productImg.src = "/img/shirt"+gender+shirtColor+".png";
+                productImg.alt = "een "+shirtColor+" shirt voor een "+gender;
             } 
             else {
-                productImg.src = `/img/shirt${gender}zwart.png`;
-                productImg.alt = `afbeelding van een zwart shirt voor een ${gender}`;
+                productImg.src = "/img/shirt"+gender+"zwart.png";
+                productImg.alt = "een zwart shirt voor een "+gender;
             }
         });
     });
@@ -217,12 +217,12 @@ if(window.location.pathname.includes("/studio/")) {
             const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
             if(genderSelect.length > 0) {
                 const gender = genderSelect[0].value;
-                productImg.src = `/img/shirt${gender}${shirtColor}.png`;
-                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
+                productImg.src = "/img/shirt"+gender+shirtColor+".png";
+                productImg.alt = "een "+shirtColor+" shirt voor een "+gender;
             } 
             else {
-                productImg.src = `/img/shirtman${shirtColor}.png`;
-                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een man`;
+                productImg.src = "/img/shirtman"+shirtColor+".png";
+                productImg.alt = "een "+shirtColor+" shirt voor een man";
             }
         });
     });
@@ -264,11 +264,11 @@ if (window.localStorage) {
 
         // Change studio route (include userID from localStorage)
         const studioRoute = startDesignButton.href.split("/");  
-        startDesignButton.href = `/studio/${localStorage.code}/${studioRoute[studioRoute.length-1]}`;
+        startDesignButton.href = "/studio/"+localStorage.code+"/"+studioRoute[studioRoute.length-1];
 
         const createBox = document.querySelector("main.home section:first-of-type div");
         const a = document.createElement("a");
-        a.href = `/order/${localStorage.code}`;
+        a.href = "/order/"+localStorage.code;
         a.classList.add("secundary");
         a.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>Bekijk winkelwagen';
 
@@ -305,7 +305,7 @@ function inlineError(inputField, error) {
     const p = document.createElement("p");
     p.textContent = error;
     p.classList.add("errortext");
-    inputField.style.border = "2px solid #d4351c";
+    inputField.style.border = "2px solid #a72916";
     inputField.parentNode.insertBefore(p, inputField.nextSibling);
 }
 
