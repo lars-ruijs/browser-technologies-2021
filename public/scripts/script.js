@@ -21,71 +21,58 @@ const logoutButton = document.querySelector("main.page a.secundary#logout");
 // Select the order form
 const orderForm = document.querySelector("main.page.order form");
 
-// If on studio route
-if(window.location.pathname.includes("/studio/")) {
+// If home login form is present > Add blur event listener
+// InsertBefore source: https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
+if(loginForm) {
+    const loginInput = document.querySelector("input[name='logincode']");
+    
+    // On blur > validate login input field
+    loginInput.addEventListener("blur", function() {
+        const errorText = document.querySelector("main.home form p:last-of-type");
 
-    // Add event listener to all fit options
-    fit.forEach(function(element) {
-        element.addEventListener("change", function(event) {
-            const gender = event.target.id;
-            const kleurSelect = document.querySelectorAll("input[name='kleur']:checked");
-            if(kleurSelect.length > 0) {
-                const shirtColor = kleurSelect[0].value;
-                productImg.src = `/img/shirt${gender}${shirtColor}.png`;
-                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
-            } 
-            else {
-                productImg.src = `/img/shirt${gender}zwart.png`;
-                productImg.alt = `afbeelding van een zwart shirt voor een ${gender}`;
-            }
-        });
-    });
-
-    // Add event listener to all color options
-    colors.forEach(function(element) {
-        element.addEventListener("change", function(event) {
-            const shirtColor = event.target.id;
-            const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
-            if(genderSelect.length > 0) {
-                const gender = genderSelect[0].value;
-                productImg.src = `/img/shirt${gender}${shirtColor}.png`;
-                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
-            } 
-            else {
-                productImg.src = `/img/shirtman${shirtColor}.png`;
-                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een man`;
-            }
-        });
-    });
-
-    // Add event listener to shirt text input field
-    shirtTextInput.addEventListener("input", function(event) {
-        const text = event.target.value;
-        
-        // Update text on shirt with entered text
-        const shirtText = document.querySelector("div.studio div.preview p");
-        shirtText.textContent = text;
-
-        const errorText = document.querySelector("div.studio fieldset:nth-of-type(3) p:last-of-type");
-        // If too many characters are used > display error text
-        if(text.length > 74 && !errorText) {
-            inlineError(shirtTextInput, "Let op! Er passen maximaal 75 tekens op het shirt.");
+        // If loginfield is empty
+        if(loginInput.value == '' && !errorText) {
+            inlineError(loginInput, "Je logincode mag niet leeg zijn.");
         }
-        else if(text.length < 75 && errorText) {
-            removeError(shirtTextInput, errorText);
+        // If code is too short or too long
+        else if(loginInput.value.length < 8 && !errorText || loginInput.value.length > 8 && !errorText) {
+            inlineError(loginInput, "Je logincode moet uit 8 karakters bestaan.");
+        }
+        // Remove errorText if no longer needed
+        else if(errorText && loginInput.value.length < 8 && loginInput.value.length > 8) {
+            removeError(loginInput, errorText);
         }
     });
 
-    // Form validation: check if all required fields are filled. If not > show error message
-    studioForm.addEventListener("submit", function(event){
-        const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
-        const colorSelect = document.querySelectorAll("input[name='kleur']:checked");
-        const sizeSelect = document.querySelectorAll("input[name='maat']:checked");
+    // Custom Validity in loginform
+    loginInput.addEventListener('input', function() {
+        const errorText = document.querySelector("main.home form p:last-of-type");
+        const formError = document.querySelector("main form p.formerror");
+        if(formError) {
+            formError.remove();
+        }
+        else if(errorText) {
+            removeError(loginInput, errorText);
+        }
+        loginInput.setCustomValidity('');
+        loginInput.checkValidity();
+      });
 
-        if(genderSelect.length == 0 || colorSelect.length == 0 || sizeSelect.length == 0){
-            createError(studioForm, "Shirt kon niet worden opgeslagen. Zorg ervoor dat je een Pasvorm (m/v), Kleur en Maat kiest!");
-            event.preventDefault();
+    loginInput.addEventListener('invalid', function() {
+        if(loginInput.value === '') {
+            loginInput.setCustomValidity("Vul een logincode in");
         } 
+        else if(loginInput.value.length < 8 || loginForm.value.length > 8) {
+            loginInput.setCustomValidity("Inlogcodes bestaan uit exact 8 karakters. Je gebruikt er nu "+loginInput.value.length+".");
+        }
+    });
+
+    // On submit > check if input is valid
+    loginForm.addEventListener("submit", function(event){
+        if(loginInput.value == '' || loginInput.value.length > 8 || loginInput.value.length < 8){
+            createError(loginForm, "Inlogcode niet geldig. Zorg ervoor dat je een logincode invult met 8 karakters. Je hebt er nu "+loginInput.value.length+" ingevuld.");
+            event.preventDefault();
+        }
         else {
             return true;
         }
@@ -171,64 +158,75 @@ if(orderForm) {
     });
 }
 
-// If home login form is present > Add blur event listener
-// InsertBefore source: https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
-if(loginForm) {
-    const loginInput = document.querySelector("input[name='logincode']");
-    
-    // On blur > validate login input field
-    loginInput.addEventListener("blur", function() {
-        const errorText = document.querySelector("main.home form p:last-of-type");
+// If on studio route
+if(window.location.pathname.includes("/studio/")) {
+    // Add event listener to shirt text input field
+    shirtTextInput.addEventListener("input", function(event) {
+        const text = event.target.value;
+        
+        // Update text on shirt with entered text
+        const shirtText = document.querySelector("div.studio div.preview p");
+        shirtText.textContent = text;
 
-        // If loginfield is empty
-        if(loginInput.value == '' && !errorText) {
-            inlineError(loginInput, "Je logincode mag niet leeg zijn.");
+        const errorText = document.querySelector("div.studio fieldset:nth-of-type(3) p:last-of-type");
+        // If too many characters are used > display error text
+        if(text.length > 74 && !errorText) {
+            inlineError(shirtTextInput, "Let op! Er passen maximaal 75 tekens op het shirt.");
         }
-        // If code is too short or too long
-        else if(loginInput.value.length < 8 && !errorText || loginInput.value.length > 8 && !errorText) {
-            inlineError(loginInput, "Je logincode moet uit 8 karakters bestaan.");
-        }
-        // Remove errorText if no longer needed
-        else if(errorText && loginInput.value.length < 8 && loginInput.value.length > 8) {
-            removeError(loginInput, errorText);
+        else if(text.length < 75 && errorText) {
+            removeError(shirtTextInput, errorText);
         }
     });
 
-    // Custom Validity in loginform
-    loginInput.addEventListener('input', function() {
-        const errorText = document.querySelector("main.home form p:last-of-type");
-        const formError = document.querySelector("main form p.formerror");
-        if(formError) {
-            formError.remove();
-        }
-        else if(errorText) {
-            removeError(loginInput, errorText);
-        }
-        loginInput.setCustomValidity('');
-        loginInput.checkValidity();
-      });
+    // Form validation: check if all required fields are filled. If not > show error message
+    studioForm.addEventListener("submit", function(event){
+        const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
+        const colorSelect = document.querySelectorAll("input[name='kleur']:checked");
+        const sizeSelect = document.querySelectorAll("input[name='maat']:checked");
 
-    loginInput.addEventListener('invalid', function() {
-        if(loginInput.value === '') {
-            loginInput.setCustomValidity("Vul een logincode in");
-        } 
-        else if(loginInput.value.length < 8 || loginForm.value.length > 8) {
-            loginInput.setCustomValidity("Inlogcodes bestaan uit minstens 8 karakters.");
-        }
-    });
-
-    // On submit > check if input is valid
-    loginForm.addEventListener("submit", function(event){
-        if(loginInput.value == '' || loginInput.value.length > 8 || loginInput.value.length < 8 || loginInput.value == 'vogeltje'){
-            createError(loginForm, "Inlogcode niet geldig. Zorg ervoor dat je een logincode invult met 8 karakters.");
+        if(genderSelect.length == 0 || colorSelect.length == 0 || sizeSelect.length == 0){
+            createError(studioForm, "Shirt kon niet worden opgeslagen. Zorg ervoor dat je een Pasvorm (m/v), Kleur en Maat kiest!");
             event.preventDefault();
-        }
+        } 
         else {
             return true;
         }
     });
-}
 
+    // Add event listener to all fit options
+    fit.forEach(function(element) {
+        element.addEventListener("change", function(event) {
+            const gender = event.target.id;
+            const kleurSelect = document.querySelectorAll("input[name='kleur']:checked");
+            if(kleurSelect.length > 0) {
+                const shirtColor = kleurSelect[0].value;
+                productImg.src = `/img/shirt${gender}${shirtColor}.png`;
+                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
+            } 
+            else {
+                productImg.src = `/img/shirt${gender}zwart.png`;
+                productImg.alt = `afbeelding van een zwart shirt voor een ${gender}`;
+            }
+        });
+    });
+
+    // Add event listener to all color options
+    colors.forEach(function(element) {
+        element.addEventListener("change", function(event) {
+            const shirtColor = event.target.id;
+            const genderSelect = document.querySelectorAll("input[name='pasvorm']:checked");
+            if(genderSelect.length > 0) {
+                const gender = genderSelect[0].value;
+                productImg.src = `/img/shirt${gender}${shirtColor}.png`;
+                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een ${gender}`;
+            } 
+            else {
+                productImg.src = `/img/shirtman${shirtColor}.png`;
+                productImg.alt = `afbeelding van een ${shirtColor} shirt voor een man`;
+            }
+        });
+    });
+}
 
 // If Clipboard API is available and codeInput field is present > Add event listener
 // Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
