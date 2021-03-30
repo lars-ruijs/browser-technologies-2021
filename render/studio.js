@@ -105,29 +105,3 @@ export function shirtCreationRoute(req, res) {
         res.render("404", { title: "T-shirt kon niet worden opgeslagen", errorTitle: "Oeps, je NERD shirt kon niet worden opgeslagen", errorDescription: "Niet alle vereiste gegevens zijn ingevuld. Ga terug naar de vorige pagina en zorg ervoor dat alle vereiste velden zijn ingevuld.", errorLink: null, errorLinkDescription: null });   
     }
 }
-
-// export function shirtTransferRoute(req, res) {
-//     if(req.body.userid && req.body.logincode && req.body.userid.length === 8 && req.body.logincode === 8) {
-//         // Get the data file
-//         const dataFile = fs.readFileSync("./data/data.json");
-//         // Convert it to an array
-//         const data = Array.from(JSON.parse(dataFile));
-//         // Filter ids on provided logincode
-//         const ids = data.map(user => user.userid).filter(id => id == logincode);
-
-//         // If login code is correct
-//         if(ids.length > 0) {
-//             const indexOldCode = data.map(user => user.userid).indexOf(req.body.userid);
-//             const indexNewCode = data.map(user => user.userid).indexOf(req.body.logincode);
-
-//             data[indexNewCode].savedShirts.push(...data[indexOldCode].savedShirts);
-//             data.splice(indexOldCode, 1);
-//             res.send("Gelukt!");
-//         }
-
-//         // Convert data back to JSON and write the file
-//         const whatToWrite = JSON.stringify(data, null, 2);
-//         fs.writeFile("./data/data.json", whatToWrite, (err) => { if(err){throw err;} console.log("succes");});
-//     }
-//     console.log("TEST gefaald");
-// }
