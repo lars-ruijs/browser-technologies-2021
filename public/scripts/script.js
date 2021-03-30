@@ -22,7 +22,6 @@ const logoutButton = document.querySelector("main.page a.secundary#logout");
 const orderForm = document.querySelector("main.page.order form");
 
 // If home login form is present > Add blur event listener
-// InsertBefore source: https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
 if(loginForm) {
     const loginInput = document.querySelector("input[name='logincode']");
     
@@ -184,8 +183,8 @@ if(window.location.pathname.includes("/studio/")) {
         const colorSelect = document.querySelectorAll("input[name='kleur']:checked");
         const sizeSelect = document.querySelectorAll("input[name='maat']:checked");
 
-        if(genderSelect.length == 0 || colorSelect.length == 0 || sizeSelect.length == 0){
-            createError(studioForm, "Shirt kon niet worden opgeslagen. Zorg ervoor dat je een Pasvorm (m/v), Kleur en Maat kiest!");
+        if(genderSelect.length == 0 || colorSelect.length == 0 || sizeSelect.length == 0 || shirtTextInput.value.length > 75){
+            createError(studioForm, "Shirt kon niet worden opgeslagen. Zorg ervoor dat je een Pasvorm (m/v), Kleur en Maat kiest en dat de tekst op het shirt niet meer dan 75 karakters bevat!");
             event.preventDefault();
         } 
         else {
@@ -230,25 +229,23 @@ if(window.location.pathname.includes("/studio/")) {
 
 // If Clipboard API is available and codeInput field is present > Add event listener
 // Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
-if(navigator.clipboard) {
-    if(codeInput) {
-        codeInput.addEventListener("click", async function() {
-        try {
-            await navigator.clipboard.writeText(codeInput.value);
-            const codeSuccess = document.querySelectorAll("div.code p");
-            
-            // If no success message present > Show "copied successful" text
-            if(codeSuccess.length === 0) {
-                const codeContainer = document.querySelector("div.code");
-                const p = document.createElement("p");
-                p.textContent = "De code is succesvol gekopieerd naar je klembord!";
-                codeContainer.appendChild(p);
-            }
-        } catch(err) {
-            console.error('Failed to copy: ', err);
+if(navigator.clipboard && codeInput) {
+    codeInput.addEventListener("click", async function() {
+    try {
+        await navigator.clipboard.writeText(codeInput.value);
+        const codeSuccess = document.querySelectorAll("div.code p");
+        
+        // If no success message present > Show "copied successful" text
+        if(codeSuccess.length === 0) {
+            const codeContainer = document.querySelector("div.code");
+            const p = document.createElement("p");
+            p.textContent = "De code is succesvol gekopieerd naar je klembord!";
+            codeContainer.appendChild(p);
         }
-        });
+    } catch(err) {
+        console.error('Failed to copy: ', err);
     }
+    });
 }
 
 // If localStorage is available
@@ -303,6 +300,7 @@ function createError(node, error) {
 }
 
 // Create inline error (below input field)
+// InsertBefore source: https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib
 function inlineError(inputField, error) {
     const p = document.createElement("p");
     p.textContent = error;

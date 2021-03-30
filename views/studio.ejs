@@ -4,9 +4,9 @@
     <div class="studio">
         <div class="preview">
             <% if(shirtData.length > 0 && shirtData[0].kleur && shirtData[0].pasvorm) { %> 
-                <img src="<%= `/img/shirt${shirtData[0].pasvorm}${shirtData[0].kleur}.png` %>" alt="<%= `afbeelding van een ${shirtData[0].kleur} shirt voor een ${shirtData[0].pasvorm}` %>">
+                <img src="<%= `/img/shirt${shirtData[0].pasvorm}${shirtData[0].kleur}.png` %>" alt="<%= `${shirtData[0].kleur} shirt voor een ${shirtData[0].pasvorm}` %>">
             <% } else { %> 
-            <img src="/img/shirtmanzwart.png" alt="afbeelding van een zwart shirt voor een man">
+            <img src="/img/shirtmanzwart.png" alt="zwart shirt voor een man">
             <% } %> 
             <p><% if(shirtData.length > 0 && shirtData[0].tekst.length > 0) {%> <%= shirtData[0].tekst %> <%}%></p>
         </div>
