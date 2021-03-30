@@ -470,3 +470,5 @@ In creating this project, I consulted the following sources.
 - **Insert element after another element** code example used from an answer by user "johannchopin" on [Stackoverflow](https://stackoverflow.com/questions/4793604/how-to-insert-an-element-after-another-element-in-javascript-without-using-a-lib).
 - **Blur event listener** documentation used from [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event).
 - **Input event** documentation used about the input event listener, via [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event).
+- **SVG icons** all inline SVG icons are from Iconmonstr (free use). View icons from Iconmonstr [here](https://iconmonstr.com/).
+- **T-shirts** the shirt images are from various sources, found through Google with search option free use. 
