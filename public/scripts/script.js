@@ -227,27 +227,6 @@ if(window.location.pathname.includes("/studio/")) {
     });
 }
 
-// If Clipboard API is available and codeInput field is present > Add event listener
-// Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
-if(navigator.clipboard && codeInput) {
-    codeInput.addEventListener("click", async function() {
-    try {
-        await navigator.clipboard.writeText(codeInput.value);
-        const codeSuccess = document.querySelectorAll("div.code p");
-        
-        // If no success message present > Show "copied successful" text
-        if(codeSuccess.length === 0) {
-            const codeContainer = document.querySelector("div.code");
-            const p = document.createElement("p");
-            p.textContent = "De code is succesvol gekopieerd naar je klembord!";
-            codeContainer.appendChild(p);
-        }
-    } catch(err) {
-        console.error('Failed to copy: ', err);
-    }
-    });
-}
-
 // If localStorage is available
 // WebStorage API documentation: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 if (window.localStorage) {
@@ -287,6 +266,12 @@ if (window.localStorage) {
     }
 }
 
+// If Clipboard API is available and codeInput field is present > Add event listener
+// Clipboard API documentation used from https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
+if(navigator.clipboard && codeInput) {
+    codeInput.addEventListener("click", clipBoardAPI);
+}
+
 // Create form error message
 function createError(node, error) {
     const errorText = document.querySelector("main form p.formerror");
@@ -313,4 +298,21 @@ function inlineError(inputField, error) {
 function removeError(inputField, node) {
     inputField.style.border = "2px solid #292929";
     node.remove();
+}
+
+async function clipBoardAPI() {
+    try {
+        await navigator.clipboard.writeText(codeInput.value);
+        const codeSuccess = document.querySelectorAll("div.code p");
+        
+        // If no success message present > Show "copied successful" text
+        if(codeSuccess.length === 0) {
+            const codeContainer = document.querySelector("div.code");
+            const p = document.createElement("p");
+            p.textContent = "De code is succesvol gekopieerd naar je klembord!";
+            codeContainer.appendChild(p);
+        }
+    } catch(err) {
+        console.error('Failed to copy: ', err);
+    }
 }

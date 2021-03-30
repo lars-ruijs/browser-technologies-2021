@@ -331,6 +331,10 @@ div.studio div.preview p {
   left: 32%;
 }
 
+div.studio fieldset:nth-of-type(3) {
+  display: block;
+}
+
 div.studio fieldset input[type="radio"]:checked + label,
 div.studio input[type="radio"]:focus + label {
   border: 3px solid #6259f5;
@@ -500,7 +504,7 @@ footer {
 
 @supports (display: flex) {
   /* Radio inputs inside studio fieldsets */
-  div.studio fieldset:not(fieldset:nth-of-type(3)) {
+  div.studio fieldset {
     position: relative;
     display: flex;
     flex-wrap: wrap;
